@@ -56,6 +56,10 @@ a {
 
 
 /* Главный новостной блог */
+.col-sm-6 {
+    padding-left: 0;
+}
+
 .col-sm-6 .card {
     background-color: black;
     border: 4px solid rgb(201, 162, 115);
@@ -154,13 +158,13 @@ a {
 
     background-color: rgb(135, 224, 239);
     color: rgb(36, 36, 62);
-    border-color: rgb(155, 44, 135);
+    border: 2px solid rgb(155, 44, 135);
 }
 
 .page-item.active .page-link {
     background-color: rgb(201, 162, 115);
     color: rgb(36, 36, 62);
-    border-color: rgb(155, 44, 135);
+    border: 2px solid rgb(155, 44, 135);
 }
 
 
@@ -168,12 +172,12 @@ a {
 /* футер */
 .footer-img-f {
     border-radius: 10%;
-    border-color: rgb(36, 36, 62);
+    border: 0.1vh solid rgb(36, 36, 62)
 }
 
 .footer-img-r {
     border-radius: 10%;
-    border-color: rgb(155, 44, 135);
+    border: 0.1vh solid rgb(155, 44, 135);
 }
 
 
