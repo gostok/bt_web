@@ -1,0 +1,85 @@
+@font-face {
+    font-family: "PIXY";
+    src: url(sourse/files/fonts/PIXY.ttf);
+
+}
+
+body {
+    font-family: PIXY;
+    background: linear-gradient(0deg, #050505 0%, #707070 100%);
+    font-size: 20px;
+}
+
+p {
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(201, 162, 115);
+}
+
+.nav-link {
+    color: white;
+}
+
+.navbar-nav .nav-link.active {
+    color: rgb(175, 170, 170);
+}
+
+.navbar-toggler {
+    background-color: rgb(175, 170, 170);
+}
+
+.navbar-brand {
+    color: white;
+
+}
+
+.carousel {
+    width: 100%;
+
+}
+
+.carousel-inner {
+    height: 15em;
+}
+
+
+.col-sm-6 .card {
+    background-color: black;
+}
+
+
+.col-sm-6 .card-title {
+    color: rgb(201, 162, 115);
+}
+
+
+.sidebar {
+    background-color: black;
+}
+
+.sidebar .card-title {
+    color: rgb(201, 162, 115);
+}
+
+
+.media-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+@media (max-width: 755px) {
+    .carousel {
+        display: none;
+    }
+
+    .carousel-inner {
+        display: none;
+    }
+}

@@ -1,0 +1,11 @@
+.carousel-item {
+    transition: transform 0.5s;
+}
+
+.carousel-item.prev {
+    transform: translateX(-100%);
+}
+
+.carousel-item.next {
+    transform: translateX(100%);
+}

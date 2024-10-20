@@ -1,0 +1,74 @@
+@font-face {
+    font-family: "PIXY";
+    src: url(fonts/PIXY.ttf);
+
+}
+
+body {
+    font-family: PIXY;
+    background: linear-gradient(0deg, #050505 0%, #707070 100%);
+    font-size: 20px;
+}
+
+p {
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(201, 162, 115);
+}
+
+/* navbar */
+.navbar-brand.n-b {
+    color: rgb(201, 162, 115);
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover {
+    color: rgb(189, 47, 47);
+}
+
+.navbar-nav .nav-link.active {
+    color: rgb(201, 162, 115);
+}
+
+.navbar-toggler {
+    background-color: rgb(175, 170, 170);
+}
+
+.navbar-brand {
+    color: white;
+
+}
+
+/* sidebar */
+.sidebar .card {
+    background-color: black;
+    position: relative;
+    height: auto;
+}
+
+.sidebar .card-title {
+    color: rgb(201, 162, 115);
+}
+
+
+/* footer */
+.media-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* phone/table */
+@media (max-width: 755px) {
+
+    .card-shop {
+        grid-template-columns: 1fr;
+    }
+}

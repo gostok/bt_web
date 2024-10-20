@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'session.css' %}">
+    <title>Бьюсь Тату / Запись на сеанс</title>
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="navbar navbar-expand-lg bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand n-b active" href="/">БЬЮСЬ ТАТУ</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/">ГЛАВНАЯ</a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/address/">АДРЕС</a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/tattoo/">ТАТУИРОВКИ</a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">ЗАПИСЬ НА СЕАНС</a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/shop/">МАГАЗИН</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+
+    <section>
+        <!-- Основа -->
+        <div class="container-fluid mt-4">
+            <div class="row">
+                <!-- левая часть -->
+                <div class="col-lg-1"></div>
+
+                <!-- середина -->
+
+                <div class="col-lg-8 col-md-12">
+
+                    <!-- Запись на сеанс -->
+                    <div class="row">
+                        <h2 class="mt-4 text-center" style="color: rgb(201, 162, 115);">Запись на Сеанс</h2>
+                        <h4 style="color: white;">
+                            Текст...
+                        </h4>
+                    </div>
+
+                    <!-- Форма записи на сеанс -->
+                    <div class="row mt-4">
+                        <form method="POST" id="session-form">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="date-display">Дата:</label>
+                                <select id="date-display" name="date" class="form-control" required>
+                                    <option value="">Выберите дату</option>
+                                    {% for date in available_dates %}
+                                    <option value="{{ date.date|date:"Y-m-d" }}">{{ date.date }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="time-display">Время:</label>
+                                <select id="time-display" name="time" class="form-control" required>
+                                    <option value="">Выберите время</option>
+                                </select>
+                            </div>
+                
+                            <div class="mb-3">
+                                <label for="name">Имя:</label>
+                                <input type="text" id="name" name="name" class="form-control" required>
+                            </div>
+                
+                            <div class="mb-3">
+                                <label for="contact_info">Контакт:</label>
+                                <input type="text" id="contact_info" name="contact_info" class="form-control" required>
+                            </div>
+                
+                            <button type="submit" class="btn btn-success">Записаться</button>
+                        </form>
+                        <div id="response" class="mt-3"></div>
+                    </div>
+
+                    <!-- Модальное окно для подтверждения записи -->
+                    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content bg-dark">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="confirmationModalLabel" style="color: rgb(201, 162, 115);">Подтверждение записи</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p style="color: white;">Выбранная дата: <span id="selectedDate"></span></p>
+                                    <p style="color: white;">Выбранное время: <span id="selectedTime"></span></p>
+                                    <p style="color: white;">Ваше имя: <span id="selectedName"></span></p>
+                                    <p style="color: white;">Контактная информация: <span id="selectedContact"></span></p>
+                                    <div style="color: rgb(201, 162, 115);">
+                                        <input type="checkbox" id="ageConfirmation"> Мне есть 18 лет
+                                    </div>
+                                    <div style="color: rgb(201, 162, 115);">
+                                        <input type="checkbox" id="dataVerification"> Я подтверждаю, что данные верны
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                                    <button type="button" class="btn btn-success" id="confirmButton">Подтвердить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Модальное окно для успешной отправки -->
+                    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content bg-dark">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="successModalLabel" style="color: rgb(201, 162, 115);">
+                                        Спасибо!</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Закрыть"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p style="color: white;">С вами скоро свяжется менеджер.</p>
+                                    <p style="color: white;">Связь с нами:</p>
+                                    <ul>
+                                        <li><a href="https://instagram.com" target="_blank">Наш Instagram</a></li>
+                                        <li><a href="https://facebook.com" target="_blank">Наш Telegram-канал</a></li>
+                                        <li><a href="https://vk.com" target="_blank">Наша VK-группа</a></li>
+                                    </ul>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary"
+                                        data-bs-dismiss="modal">Закрыть</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- правая часть -->
+                <div class="col-lg-3 col-md-12">
+                    <div class="row px-2">
+                        <!-- сайдбар -->
+                        <div class="col-lg-12 sidebar my-4">
+                            {% for news in sidebar_news %}
+                            <div class="card my-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ news.title }}</h5>
+                                    <p class="card-text">{{ news.content }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <footer class="mt-4 mb-0 bg-dark">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 footer-text text-center" style="font-size: 16px; padding-top: 1em;">
+                    <p>All Rights Reserved 2024</p>
+                    <p class="mb-0" style="font-size: 14px;">БЬЮСЬ ТАТУ-СТУДИЯ</p>
+                    <p class="mt-0" style="font-size: 14px;">г.Калининград, ул.Карла Маркса, д.39</p>
+                    <p style="font-size: 10px;">Created by gostok</p>
+                </div>
+                <div class="col-lg-4 col-md-12 footer-text text-center mt-4">
+                    <p>
+                        <a href="#">Contacts</a> <br>
+                        <a href="#">Job</a> <br>
+                        <a href="#">Our Team</a> <br>
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-12 media-links">
+                    <a href="#">
+                        <img style="width: 35px; margin-inline: 1em;"
+                            src="{% static 'images/img_soc/INST.png' %}" alt="Instagram">
+                    </a>
+                    <a href="#">
+                        <img style="width: 35px; margin-inline: 1em;"
+                            src="{% static 'images/img_soc/TELEGA.png' %}" alt="Telegram">
+                    </a>
+                    <a href="#">
+                        <img style="width: 35px; margin-inline: 1em;" src="{% static 'images/img_soc/VK.png' %}"
+                            alt="vk">
+                    </a>
+                    <a href="#">
+                        <img style="width: 35px; margin-inline: 1em;"
+                            src="{% static 'images/img_soc/WA.png' %}" alt="WhatsApp">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {        $('#date-display').change(function() {
+                var selectedDate = $(this).val();           console.log("Выбраная дата: ", selectedDate);                       $.ajax({
+                    url: "{% url 'get_times' %}",
+                    data: {
+                        'date': selectedDate
+                    },
+                    success: function(data) {
+                        console.log("Доступные времена: ", data);
+                        $('#time-display').empty();                    $('#time-display').append('<option value="">Выберите время</option>');
+                        $.each(data, function(index, value) {                        $('#time-display').append('<option value="' + value + '">' + value + '</option>');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function (e) {
+            e.preventDefault();
+    
+            const selectedDate = document.getElementById('date-display').value;
+            const selectedTime = document.getElementById('time-display').value;
+            const selectedName = document.getElementById('name').value;
+            const selectedContact = document.getElementById('contact_info').value;
+    
+            document.getElementById('selectedDate').innerText = selectedDate;
+            document.getElementById('selectedTime').innerText = selectedTime;
+            document.getElementById('selectedName').innerText = selectedName;
+            document.getElementById('selectedContact').innerText = selectedContact;
+    
+            var confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+            confirmationModal.show();
+        });
+    
+        document.getElementById('confirmButton').addEventListener('click', function () {
+            if (document.getElementById('ageConfirmation').checked && document.getElementById('dataVerification').checked) {
+                var confirmationModal = bootstrap.Modal.getInstance(document.getElementById('confirmationModal'));
+                confirmationModal.hide();
+    
+                const formData = new FormData();
+                formData.append('date', document.getElementById('date-display').value);
+                formData.append('time', document.getElementById('time-display').value);
+                formData.append('name', document.getElementById('name').value);
+                formData.append('contact_info', document.getElementById('contact_info').value);
+    
+                fetch('/session/', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRFToken': getCookie('csrftoken'),
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => {
+                    if (data.success) {
+                        var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                        successModal.show();
+    
+                        // Обработчик события закрытия модального окна успешной отправки
+                        document.getElementById('successModal').addEventListener('hidden.bs.modal', function () {
+                            location.reload(); // Перезагрузка страницы
+                        });
+                    } else {
+                        console.error(data.errors);
+                        alert('Ошибка при отправке данных. Пожалуйста, попробуйте еще раз.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                    alert('Произошла ошибка. Пожалуйста, попробуйте позже.');
+                });
+            } else {
+                alert('Пожалуйста, подтвердите, что вам есть 18 лет и данные верны.');
+            }
+        });
+    
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    </script>
+
+</body>
+
+</html>
