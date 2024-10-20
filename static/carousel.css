@@ -1,11 +1,9 @@
 .carousel-item {
     transition: transform 0.5s;
+    display: none;
+    height: 100%;
 }
 
-.carousel-item.prev {
-    transform: translateX(-100%);
-}
-
-.carousel-item.next {
-    transform: translateX(100%);
+.carousel-item.active {
+    display: block;
 }

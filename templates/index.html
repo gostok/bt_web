@@ -85,22 +85,22 @@
                                 <div class="carousel-inner" style="height: 400px; width: 100%;">
                                     {% for image in carousel_images %}
                                     <div class="carousel-item {% if forloop.first %}active{% endif %}" style="height: 100%;">
-                                        <img src="{{ image.image.url }}" class="d-block img-fluid" alt="{{ image.alt_text }}" style="height: 100%; width: 100%;">
+                                        <img src="{{ image.image.url }}" class="d-block img-fluid" alt="{{ image.alt_text }}" 
+                                            style="height: 100%; width: 100%;">
                                     </div>
                                     {% endfor %}
-                                    <button class="carousel-control-prev" type="button"
-                                        data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button"
-                                        data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
                                 </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
                             </div>
                         </div>
+
 
                         <!-- Главный новостной блог -->
 
@@ -270,20 +270,26 @@
             var $current = $(event.target).find('.carousel-item.active');
             var $next = $(event.relatedTarget);
             
-            $current.addClass('prev');
-            $next.addClass('next');
-            });
-            
-            $('.carousel').on('slid.bs.carousel', function(event) {
+            // Убедитесь, что текущий слайд уходит влево, а следующий приходит справа
+            if (event.direction === 'left') {
+                $current.addClass('prev');
+                $next.addClass('next');
+            } else {
+                $current.addClass('next');
+                $next.addClass('prev');
+            }
+        });
+        
+        $('.carousel').on('slid.bs.carousel', function(event) {
             var $current = $(event.target).find('.carousel-item.active');
             var $prev = $(event.target).find('.carousel-item.prev');
-            
-            $prev.removeClass('prev');
-            $current.removeClass('next');
-            });
-            $('.carousel').carousel({
-                interval: 1000 // время в миллисекундах между автоматическими переключениями слайдов
-            });
+            var $next = $(event.target).find('.carousel-item.next');
+         $prev.removeClass('prev');
+            $next.removeClass('next');
+        });
+        $('.carousel').carousel({
+            interval: 1000 // Установите время в миллисекундах между переключениями слайдов
+        });
     </script>
     <script>
         function toggleText(button) {
