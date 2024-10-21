@@ -1,7 +1,7 @@
 @font-face {
     font-family: "PIXY";
     src: url(fonts/PIXY.ttf);
-
+    font-size: 12px;
 }
 
 body {
@@ -10,7 +10,7 @@ body {
     background: url(images/img_soc/PARALLAX_Test.png);
     overflow-y: scroll;
     overflow-x: hidden;
-    font-size: 20px;
+    font-size: 16px;
     z-index: 1;
 }
 
@@ -169,16 +169,7 @@ a {
 
 
 
-/* футер */
-.footer-img-f {
-    border-radius: 10%;
-    border: 0.1vh solid rgb(36, 36, 62)
-}
 
-.footer-img-r {
-    border-radius: 10%;
-    border: 0.1vh solid rgb(155, 44, 135);
-}
 
 
 @media (max-width: 755px) {

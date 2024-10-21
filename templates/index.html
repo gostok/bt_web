@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{% static 'bg.css' %}">
     <link rel="stylesheet" href="{% static 'carousel.css' %}">
     <link rel="stylesheet" href="{% static 'scrollbar.css' %}">
+    <link rel="stylesheet" href="{% static 'my_footer_css.css' %}">
     <title>Бьюсь - Главная</title>
 </head>
 
@@ -66,8 +67,9 @@
     
         <!-- Шапка главной страницы -->
         <div class="bgimage mt-0">
-            <img src="{% static 'images/png-transparent-youtube-template-banner-youtube-text-photography-logo.png' %}"
-                alt="Шапка">
+            {% if header_image %}
+                <img src="{{ header_image.image.url }}" alt="Шапка страницы главной">
+            {% endif %}
         </div>
 
         <!-- Основа -->

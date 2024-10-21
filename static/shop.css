@@ -1,13 +1,17 @@
 @font-face {
     font-family: "PIXY";
     src: url(fonts/PIXY.ttf);
-
+    font-size: 12px;
 }
 
 body {
     font-family: PIXY;
-    background: linear-gradient(0deg, #050505 0%, #707070 100%);
-    font-size: 20px;
+    /* background: linear-gradient(0deg, #050505 0%, #707070 100%); */
+    background: url(images/img_soc/PARALLAX_Test.png);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-size: 16px;
+    z-index: 1;
 }
 
 p {
@@ -57,12 +61,7 @@ a {
 }
 
 
-/* footer */
-.media-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 
 /* phone/table */

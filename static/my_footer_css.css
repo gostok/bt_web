@@ -1,7 +1,10 @@
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #343a40;
-    padding: 10px 0;
-  }
+/* футер */
+.footer-img-f {
+  border-radius: 10%;
+  border: 0.1vh solid rgb(36, 36, 62)
+}
+
+.footer-img-r {
+  border-radius: 10%;
+  border: 0.1vh solid rgb(155, 44, 135);
+}

@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 
 
 def home(request):
+    header_image = HeaderImage.objects.first()
     carousel_images = CarouselImage.objects.all()
     blog_posts = BlogPost.objects.all().order_by("-published_date")
 
@@ -16,5 +17,6 @@ def home(request):
         "carousel_images": carousel_images,
         "blog_posts": blog,
         "sidebar_news": sidebar_news,
+        "header_image": header_image,
     }
     return render(request, "index.html", context)

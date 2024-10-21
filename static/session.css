@@ -74,11 +74,3 @@ a {
 .sidebar .card-title {
     color: rgb(201, 162, 115);
 }
-
-
-/* footer */
-.media-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
