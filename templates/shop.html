@@ -32,7 +32,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">ГЛАВНАЯ</a>
+                            <a class="nav-link" aria-current="page" href="/">ГЛАВНАЯ</a>
 
                         </li>
                         <li class="nav-item">
@@ -48,7 +48,7 @@
 
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">МАГАЗИН</a>
+                            <a class="nav-link active" href="#">МАГАЗИН</a>
                         </li>
                     </ul>
                 </div>
@@ -79,42 +79,101 @@
 
                 <div class="col-lg-8 col-md-12">
                     <div class="row">
-                        <!-- Главный новостной блог -->
 
+                        <!-- Карточки товаров -->
                         <div class="col-lg-12 col-md-12 mt-4">
                             <div class="row">
-                                {% for post in blog_posts %}
-                                <div class="col-sm-6 mb-3 mb-sm-0 mt-4 col-card-b">
+                                {% for product in products %}
+                                <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
                                     <div class="card">
-                                        {% if post.image %}
+                                        {% if product.images.first %}
                                         <div class="image-wrapper mt-2 md-2">
-                                            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+                                            <div id="carouselCard{{ product.id }}" class="carousel slide"> <!-- Удален атрибут data-bs-ride -->
+                                                <div class="carousel-inner">
+                                                    {% for image in product.images.all %}
+                                                    <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                                                        <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ product.title }}">
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselCard{{ product.id }}" data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button" data-bs-target="#carouselCard{{ product.id }}" data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </button>
+                                            </div>
                                         </div>
                                         {% endif %}
                                         <div class="card-body">
-                                            <h5 class="card-title">{{ post.title }}</h5>
-                                            <p class="card-text">
-                                                <span class="preview-text">{{ post.content|truncatewords:10 }}</span>
-                                                <span class="full-text" style="display: none;">{{ post.content }}</span>
-                                            </p>
-                                            <a class="btn btn-primary" onclick="toggleText(this)">Узнать
-                                                больше</a>
-                                            <p class="p-space">{{ post.published_date }}
-                                            </p>
+                                            <h5 class="card-title">{{ product.title }}</h5>
+                                            <p class="card-text">Цена: {{ product.price }} ₽</p>
+                                            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal{{ product.id }}">Узнать больше</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Модальное окно для товара -->
+                                <div class="modal fade" id="productModal{{ product.id }}" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content modal-card-text">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="productModalLabel">{{ product.title }}</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <!-- Карусель изображений -->
+                                                        <div id="carouselExample{{ product.id }}" class="carousel slide"> <!-- Удален атрибут data-bs-ride -->
+                                                            <div class="carousel-inner">
+                                                                {% for image in product.images.all %}
+                                                                <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                                                                    <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ product.title }}">
+                                                                </div>
+                                                                {% endfor %}
+                                                            </div>
+                                                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample{{ product.id }}" data-bs-slide="prev">
+                                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                                <span class="visually-hidden">Previous</span>
+                                                            </button>
+                                                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample{{ product.id }}" data-bs-slide="next">
+                                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                                <span class="visually-hidden">Next</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p>{{ product.description }}</p>
+                                                        <p>Цена: {{ product.price }} ₽</p>
+                                                        <h6>Контакты продавца:</h6>
+                                                        <p>{{ product.seller.name }}</p>
+                                                        <p>{{ product.seller.contacts }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 {% endfor %}
                             </div>
                         </div>
+
+
+                        
                         
                         <!-- Пагинация -->
                         <div class="row">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
-                                    {% if blog_posts.has_previous %}
+                                    {% if products.has_previous %}
                                         <li class="page-item">
-                                            <a class="page-link" href="?page={{ blog_posts.previous_page_number }}" aria-label="Previous">
+                                            <a class="page-link" href="?page={{ products.previous_page_number }}" aria-label="Previous">
                                                 <span aria-hidden="true">&laquo;</span>
                                             </a>
                                         </li>
@@ -124,8 +183,8 @@
                                         </li>
                                     {% endif %}
                         
-                                    {% for i in blog_posts.paginator.page_range %}
-                                        {% if blog_posts.number == i %}
+                                    {% for i in products.paginator.page_range %}
+                                        {% if products.number == i %}
                                             <li class="page-item active" aria-current="page">
                                                 <span class="page-link">{{ i }}</span>
                                             </li>
@@ -136,9 +195,9 @@
                                         {% endif %}
                                     {% endfor %}
                         
-                                    {% if blog_posts.has_next %}
+                                    {% if products.has_next %}
                                         <li class="page-item">
-                                            <a class="page-link" href="?page={{ blog_posts.next_page_number }}" aria-label="Next">
+                                            <a class="page-link" href="?page={{ products.next_page_number }}" aria-label="Next">
                                                 <span aria-hidden="true">&raquo;</span>
                                             </a>
                                         </li>
