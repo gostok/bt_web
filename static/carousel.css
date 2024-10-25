@@ -1,18 +1,37 @@
-.carousel>.carousel-inner {
-    border: 6px solid rgb(201, 162, 115);
-    border-radius: 5px;
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    /* Фиксированная высота для карусели */
     overflow: hidden;
-    margin: 0;
-    padding: 0;
+    /* Скрываем все, что выходит за пределы карусели */
+}
+
+.carousel-inner {
+    border: 2px solid;
+    border-radius: 5px;
+    display: flex;
+    /* Используем flexbox для горизонтального размещения слайдов */
+    transition: transform 0.5s ease;
+    /* Плавный переход для перемещения */
 }
 
 .carousel-item {
-    transition: transform 0.5s;
-    display: none;
+    min-width: 100%;
+    /* Каждый слайд занимает 100% ширины карусели */
     height: 100%;
-    width: 100%;
+    /* Высота слайда */
+    display: none;
+    /* Скрываем все слайды по умолчанию */
 }
 
 .carousel-item.active {
     display: block;
+    /* Показываем только активный слайд */
+}
+
+.carousel-item-next,
+.carousel-item-prev {
+    display: block;
+    /* Показать следующий и предыдущий слайды */
 }

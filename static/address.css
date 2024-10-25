@@ -1,63 +1,36 @@
-p {
-    color: white;
-}
-
-a {
-    text-decoration: none;
-    color: rgb(201, 162, 115);
-}
-
-/* navbar */
-.navbar-brand.n-b {
-    color: rgb(201, 162, 115);
-}
-
-.nav-link {
-    color: white;
-}
-
-.nav-link:hover {
-    color: rgb(189, 47, 47);
-}
-
-.navbar-nav .nav-link.active {
-    color: rgb(201, 162, 115);
-}
-
-.navbar-toggler {
-    background-color: rgb(175, 170, 170);
-}
-
-.navbar-brand {
-    color: white;
-
-}
-
-/* sidebar */
-.sidebar .card {
-    background-color: black;
-    position: relative;
-    height: auto;
-}
-
-.sidebar .card-title {
-    color: rgb(201, 162, 115);
-}
-
-
 .contacts-conteiner-back {
-    border-radius: 10%;
-    border: 0.5vh solid rgb(201, 162, 115);
+    border: 2px solid;
+    border-radius: 5px;
+    background-color: rgba(36, 36, 62, 0.5);
 }
 
 .map-container {
-    border-radius: 10%;
-    border: 0.5vh solid rgb(201, 162, 115);
+    border: 2px solid;
+    border-radius: 5px;
     margin-left: 4em;
 }
 
 .contacts-conteiner {
     margin-left: 8em;
+}
+
+.contacts-conteiner .d-flex {
+
+    flex-wrap: wrap;
+    /* Позволяет иконкам обтекать */
+    justify-content: center;
+    /* Центрирует иконки по горизонтали */
+}
+
+.icon {
+    display: flex;
+    /* Для правильного размещения изображений */
+    justify-content: center;
+    /* Центрируем изображение внутри ссылки */
+    align-items: center;
+    /* Выравнивание по центру */
+    margin: 0.5em;
+    /* Отступы между иконками */
 }
 
 .d-flex>ol {
@@ -70,4 +43,12 @@ a {
 .d-flex>ol:last-child {
     margin-right: 0;
     /* Убираем отступ у последней колонки */
+}
+
+
+@media (max-width: 767.98px) {
+    .icon {
+        margin: 0.2em;
+        /* Уменьшаем отступы на мобильных устройствах */
+    }
 }

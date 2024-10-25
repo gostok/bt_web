@@ -24,11 +24,14 @@ def tattoo(request):
     master_page_number = request.GET.get("master_page")
     masters = master_paginator.get_page(master_page_number)
 
+    tab = request.GET.get("tab", "tattoo")
+
     context = {
         "header_image": header_image,
         "sidebar_news": sidebar_news,
         "tattoos": tattoos,
         "masters": masters,
         "categories": categories,
+        "tab": tab,
     }
     return render(request, "tattoo.html", context)

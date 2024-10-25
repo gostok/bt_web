@@ -79,7 +79,7 @@
 
                 <!-- середина -->
 
-                <div class="col-lg-8 col-md-12 contacts-conteiner-back bg-dark">
+                <div class="col-lg-8 col-md-12 contacts-conteiner-back">
                     <div class="row mb-2">
                         <div class="col-lg-8 col-md-8 contacts-conteiner">
                             <h2 class="mt-4" style="color: rgb(201, 162, 115);">Наш адрес</h2>
@@ -95,51 +95,28 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-8 col-md-8 contacts-conteiner">
-                            <h2 class="mt-4" style="color: rgb(201, 162, 115);">Наши контакты:</h2>
-                            
-                            <div class="d-flex flex-wrap">
-                                <ol class="list-unstyled d-flex flex-column" style="margin-left: 4em;">
-                                    <li>
-                                        <a href="#">
-                                            <img style="width: 35px; margin-inline: 1em; margin: 0.2em;" src="{% static 'images/img_soc/inst.png' %}" alt="Instagram">
-                                        </a>
-                                        <span style="color: white;">- наш Instagram</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img style="width: 35px; margin-inline: 1em; margin: 0.2em;" src="{% static 'images/img_soc/tg.png' %}" alt="Telegram">
-                                        </a>
-                                        <span style="color: white;">- наш Telegram</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img style="width: 35px; margin-inline: 1em; margin: 0.2em;" src="{% static 'images/img_soc/vk.png' %}" alt="VK">
-                                        </a>
-                                        <span style="color: white;">- наш VK</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img style="width: 35px; margin-inline: 1em; margin: 0.2em;" src="{% static 'images/img_soc/wa.png' %}" alt="WhatsApp">
-                                        </a>
-                                        <span style="color: white;">- наш WatsApp</span>
-                                    </li>
-                                </ol>
-                                <ol class="list-unstyled d-flex flex-column" style="margin-right: 4em">
-                                    <li>
-                                        <a href="#">
-                                            <img style="width: 35px; margin-inline: 1em; margin: 0.5em;" src="{% static 'images/img_soc/geo.png' %}" alt="geo">
-                                        </a>
-                                        <span style="color: white;">- мы на Яндекс Картах</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img style="width: 35px; margin-inline: 1em; margin: 0.5em;" src="{% static 'images/img_soc/geo.png' %}" alt="geo2">
-                                        </a>
-                                        <span style="color: white;">- мы в 2Gis</span>
-                                    </li>
-                                </ol>
+                            <h2 class="mt-0 pt-0" style="color: rgb(201, 162, 115);">Мы в:</h2>
+                    
+                            <div class="d-flex flex-wrap justify-content-center">
+                                <a href="#" class="icon">
+                                    <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/inst.png' %}" alt="Instagram">
+                                </a>
+                                <a href="#" class="icon">
+                                    <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/tg.png' %}" alt="Telegram">
+                                </a>
+                                <a href="#" class="icon">
+                                    <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/vk.png' %}" alt="VK">
+                                </a>
+                                <a href="#" class="icon">
+                                    <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/wa.png' %}" alt="WhatsApp">
+                                </a>
+                                <a href="#" class="icon">
+                                    <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/pngwing.com.png' %}" alt="Яндекс Карта">
+                                </a>
+                                <a href="#" class="icon">
+                                    <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/logo-2gis.png' %}" alt="2Gis">
+                                </a>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
@@ -183,9 +160,9 @@
                 </div>
                 <div class="col-lg-4 col-md-12 footer-text text-center mt-4">
                     <p>
-                        <a href="#">Contacts</a> <br>
-                        <a href="#">Job</a> <br>
-                        <a href="#">Our Team</a> <br>
+                        <a href="/address/">Contacts</a> <br>
+                        <a href="https://t.me/daedsierutan">Job</a> <br>
+                        <a href="{% url 'tattoo' %}?tab=master">Our Team</a> <br>
                     </p>
                 </div>
                 <div class="col-lg-4 col-md-12 media-links">

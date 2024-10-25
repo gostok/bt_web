@@ -19,6 +19,7 @@
 </head>
 
 <body>
+    
     <div class="background"></div>
 
     <header>
@@ -85,7 +86,7 @@
                         <!-- карусель -->
                         <div class="row">
                             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="true">
-                                <div class="carousel-inner" style="height: 400px; width: 100%;">
+                                <div class="carousel-inner" style="height: 400px;">
                                     {% for image in carousel_images %}
                                     <div class="carousel-item {% if forloop.first %}active{% endif %}" style="height: 100%; width:100%;">
                                         <img src="{{ image.image.url }}" class="d-block img-fluid" alt="{{ image.alt_text }}" 
@@ -201,7 +202,7 @@
 
             </div>
         </div>
-         
+        
     </section>
 
     
@@ -217,9 +218,9 @@
                 </div>
                 <div class="col-lg-4 col-md-12 footer-text text-center mt-4">
                     <p>
-                        <a href="#">Contacts</a> <br>
-                        <a href="#">Job</a> <br>
-                        <a href="#">Our Team</a> <br>
+                        <a href="/address/">Contacts</a> <br>
+                        <a href="https://t.me/daedsierutan">Job</a> <br>
+                        <a href="{% url 'tattoo' %}?tab=master">Our Team</a> <br>
                     </p>
                 </div>
                 <div class="col-lg-4 col-md-12 media-links">
@@ -245,7 +246,7 @@
             </div>
         </div>
     </footer>
-
+    
  
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -270,32 +271,7 @@
                     sessionStorage.removeItem('scrollPosition');  }
             });
     </script>
-    <script>
-        $('.carousel').on('slide.bs.carousel', function(event) {
-            var $current = $(event.target).find('.carousel-item.active');
-            var $next = $(event.relatedTarget);
-            
-            // Убедитесь, что текущий слайд уходит влево, а следующий приходит справа
-            if (event.direction === 'left') {
-                $current.addClass('prev');
-                $next.addClass('next');
-            } else {
-                $current.addClass('next');
-                $next.addClass('prev');
-            }
-        });
-        
-        $('.carousel').on('slid.bs.carousel', function(event) {
-            var $current = $(event.target).find('.carousel-item.active');
-            var $prev = $(event.target).find('.carousel-item.prev');
-            var $next = $(event.target).find('.carousel-item.next');
-         $prev.removeClass('prev');
-            $next.removeClass('next');
-        });
-        $('.carousel').carousel({
-            interval: 1000 // Установите время в миллисекундах между переключениями слайдов
-        });
-    </script>
+
     <script>
         function toggleText(button) {
             const cardText = button.previousElementSibling; // Элемент p с классом card-text
@@ -314,9 +290,20 @@
         }
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var descriptionElement = document.getElementById('post-content');
-            descriptionElement.innerHTML = descriptionElement.innerHTML.replace(/\n/g, '<br>');
+        $(document).ready(function() {
+            $('#carouselExampleAutoplaying').carousel({
+                interval: 3000 // Установите интервал переключения слайдов
+            });
+        
+            // Перехватываем событие `slide.bs.carousel`
+            $('#carouselExampleAutoplaying').on('slide.bs.carousel', function(e) {
+                const $nextSlide = $(e.relatedTarget); // Получаем следующий слайд
+                const idx = $nextSlide.index(); // Индекс следующего слайда
+                const $carouselInner = $(this).find('.carousel-inner');
+        
+                // Сдвигаем карусель
+                $carouselInner.css('transform', 'translateX(-' + (idx * 100) + '%)');
+            });
         });
     </script>
 

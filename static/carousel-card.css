@@ -27,17 +27,17 @@
 }
 
 .carousel-indicators li {
-    background-color: rgb(135, 224, 239);
+    background-color: rgb(36, 36, 62);
     /* Цвет для неактивных индикаторов */
-    border-radius: 50%;
+    border-radius: 10%;
     list-style-type: none;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 .carousel-indicators .active {
     background-color: rgb(201, 162, 115);
     /* Цвет для активного индикатора */
-    border-radius: 50%;
+    border-radius: 20%;
     list-style-type: none;
-    border: 2px solid black;
+    border: 1px solid black;
 }

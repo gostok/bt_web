@@ -41,3 +41,10 @@ class HeaderImage(models.Model):
 
     def __str__(self) -> str:
         return "Header Image"
+
+
+class SiteStatistics(models.Model):
+    total_visits = models.PositiveIntegerField(default=0)
+
+    def __str__(self) -> str:
+        return f"Кол-во посещений сайта: {self.total_visits}"

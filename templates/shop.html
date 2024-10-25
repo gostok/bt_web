@@ -18,6 +18,7 @@
 </head>
 
 <body>
+    
     <div class="background"></div>
 
     <header>
@@ -124,7 +125,7 @@
                                 </div>
 
                                 <!-- Модальное окно для товара -->
-                                <div class="modal fade mt-4" id="productModal{{ product.id }}" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+                                <div class="modal fade mt-4 modal-bg-bl-front" id="productModal{{ product.id }}" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content modal-card-text modal-css">
                                             <div class="modal-header">
@@ -280,9 +281,9 @@
                 </div>
                 <div class="col-lg-4 col-md-12 footer-text text-center mt-4">
                     <p>
-                        <a href="#">Contacts</a> <br>
-                        <a href="#">Job</a> <br>
-                        <a href="#">Our Team</a> <br>
+                        <a href="/address/">Contacts</a> <br>
+                        <a href="https://t.me/daedsierutan">Job</a> <br>
+                        <a href="{% url 'tattoo' %}?tab=master">Our Team</a> <br>
                     </p>
                 </div>
                 <div class="col-lg-4 col-md-12 media-links">
@@ -351,6 +352,7 @@
         }
     </script>
 
+    
 
 </body>
 

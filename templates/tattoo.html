@@ -436,9 +436,9 @@
                 </div>
                 <div class="col-lg-4 col-md-12 footer-text text-center mt-4">
                     <p>
-                        <a href="#">Contacts</a> <br>
-                        <a href="#">Job</a> <br>
-                        <a href="#">Our Team</a> <br>
+                        <a href="/address/">Contacts</a> <br>
+                        <a href="https://t.me/daedsierutan">Job</a> <br>
+                        <a href="{% url 'tattoo' %}?tab=master">Our Team</a> <br>
                     </p>
                 </div>
                 <div class="col-lg-4 col-md-12 media-links">
@@ -552,8 +552,19 @@
                 })
                 .catch(error => console.error('Error loading master page:', error));
         }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const tab = '{{ tab }}';  // Получаем значение tab из контекста
+        
+            if (tab === 'master') {
+                showMasterGallery(); // Активируем галерею мастеров
+            } else {
+                showTattooGallery(); // По умолчанию активируем галерею татуировок
+            }
+        });
         
     </script>
+
 </body>
 
 </html>
