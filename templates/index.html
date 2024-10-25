@@ -84,8 +84,9 @@
                 <div class="col-lg-8 col-md-12">
                     <div class="row">
                         <!-- карусель -->
+            
                         <div class="row">
-                            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="true">
+                            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner" style="height: 400px;">
                                     {% for image in carousel_images %}
                                     <div class="carousel-item {% if forloop.first %}active{% endif %}" style="height: 100%; width:100%;">
@@ -94,11 +95,11 @@
                                     </div>
                                     {% endfor %}
                                 </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Previous</span>
                                 </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Next</span>
                                 </button>
@@ -247,7 +248,7 @@
         </div>
     </footer>
     
- 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -289,23 +290,8 @@
             }
         }
     </script>
-    <script>
-        $(document).ready(function() {
-            $('#carouselExampleAutoplaying').carousel({
-                interval: 3000 // Установите интервал переключения слайдов
-            });
-        
-            // Перехватываем событие `slide.bs.carousel`
-            $('#carouselExampleAutoplaying').on('slide.bs.carousel', function(e) {
-                const $nextSlide = $(e.relatedTarget); // Получаем следующий слайд
-                const idx = $nextSlide.index(); // Индекс следующего слайда
-                const $carouselInner = $(this).find('.carousel-inner');
-        
-                // Сдвигаем карусель
-                $carouselInner.css('transform', 'translateX(-' + (idx * 100) + '%)');
-            });
-        });
-    </script>
+
+
 
 </body>
 

@@ -11,23 +11,21 @@
     border: 2px solid;
     border-radius: 5px;
     display: flex;
-    /* Используем flexbox для горизонтального размещения слайдов */
     transition: transform 0.5s ease;
-    /* Плавный переход для перемещения */
+
 }
 
 .carousel-item {
-    min-width: 100%;
-    /* Каждый слайд занимает 100% ширины карусели */
+    width: 100%;
     height: 100%;
-    /* Высота слайда */
-    display: none;
-    /* Скрываем все слайды по умолчанию */
+    transition: transform 0.5s ease;
 }
+
+
 
 .carousel-item.active {
     display: block;
-    /* Показываем только активный слайд */
+
 }
 
 .carousel-item-next,
