@@ -1,0 +1,17 @@
+.carousel {
+    border: 6px solid rgb(201, 162, 115);
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.carousel-item {
+    transition: transform 0.5s;
+    display: none;
+    height: 100%;
+}
+
+.carousel-item.active {
+    display: block;
+}

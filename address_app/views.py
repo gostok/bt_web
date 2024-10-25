@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from .models import *
-from home_app.models import SidebarNews
+
+
 def address(request):
+    header_image = HeaderImage.objects.first()
     sidebar_news = SidebarNews.objects.all()
     context = {
-        'sidebar_news': sidebar_news,
+        "header_image": header_image,
+        "sidebar_news": sidebar_news,
     }
-    return render(request, 'address.html', context)
+    return render(request, "address.html", context)

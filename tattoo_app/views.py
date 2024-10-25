@@ -1,15 +1,34 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from .models import *
-from home_app.models import SidebarNews
 
 
 def tattoo(request):
+    header_image = HeaderImage.objects.first()
     sidebar_news = SidebarNews.objects.all()
-    tattoos = Tattoo.objects.all()
-    masters = Master.objects.all()
+
+    categories = Category.objects.all()
+
+    categories_id = request.GET.get("category")
+    if categories_id == "all" or categories_id is None:
+        tattoo_list = Tattoo.objects.all()
+    else:
+        tattoo_list = Tattoo.objects.filter(category_id=categories_id)
+
+    tattoo_paginator = Paginator(tattoo_list, 4)
+    tattoo_page_number = request.GET.get("page")
+    tattoos = tattoo_paginator.get_page(tattoo_page_number)
+
+    master_list = Master.objects.all()
+    master_paginator = Paginator(master_list, 2)
+    master_page_number = request.GET.get("master_page")
+    masters = master_paginator.get_page(master_page_number)
+
     context = {
-        'sidebar_news': sidebar_news,
-        'tattoos': tattoos,
-        'masters': masters,
+        "header_image": header_image,
+        "sidebar_news": sidebar_news,
+        "tattoos": tattoos,
+        "masters": masters,
+        "categories": categories,
     }
-    return render(request, 'tattoo.html', context)
+    return render(request, "tattoo.html", context)

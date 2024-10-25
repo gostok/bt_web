@@ -1,10 +1,16 @@
 /* футер */
-.footer-img-f {
-  border-radius: 10%;
-  border: 0.1vh solid rgb(36, 36, 62)
+
+
+.social-icons {
+  margin-top: 1.6em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
-.footer-img-r {
+.footer-img {
   border-radius: 10%;
-  border: 0.1vh solid rgb(155, 44, 135);
+  width: 54px;
+  margin: 0.5em;
 }
