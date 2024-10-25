@@ -9,6 +9,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'bg.css' %}">
     <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="{% static 'carousel-card.css' %}">
     <link rel="stylesheet" href="{% static 'tattoo.css' %}">
     <link rel="stylesheet" href="{% static 'scrollbar.css' %}">
     <link rel="stylesheet" href="{% static 'my_footer_css.css' %}">
@@ -160,7 +161,7 @@
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <!-- Карусель изображений -->
-                                                                <div id="carouselTattoo{{ tattoo.id }}" class="carousel slide" data-bs-ride="carousel">
+                                                                <div id="carouselTattoo{{ tattoo.id }}" class="carousel slide" data-bs-ride="false">
                                                                     <ol class="carousel-indicators">
                                                                         {% for image in tattoo.images.all %}
                                                                         <li data-bs-target="#carouselTattoo{{ tattoo.id }}" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
@@ -184,10 +185,10 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
-                                                                <p>{{ tattoo.description|linebreaks }}</p>
-                                                                <p>Дата публикации: {{ tattoo.publication_date }}</p>
-                                                                <p>Мастер: {{ tattoo.master.name }}</p>
-                                                                <p>Категория: {{ tattoo.category.name }}</p>
+                                                                <p class="text-description">{{ tattoo.description }}</p>
+                    
+                                                                <p><span class="p-front">Мастер:</span> {{ tattoo.master.name }}</p>
+                                                                <p><span class="p-front">Категория:</span> {{ tattoo.category.name }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -259,7 +260,7 @@
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <!-- Карусель изображений -->
-                                                                <div id="carouselMaster{{ master.id }}" class="carousel slide" data-bs-ride="carousel">
+                                                                <div id="carouselMaster{{ master.id }}" class="carousel slide" data-bs-ride="false">
                                                                     <ol class="carousel-indicators">
                                                                         {% for image in master.images.all %}
                                                                         <li data-bs-target="#carouselMaster{{ master.id }}" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
@@ -283,9 +284,9 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
-                                                                <p>{{ master.description|linebreaks }}</p>
-                                                                <p>Дата публикации: {{ master.publication_date }}</p>
-                                                                <p>Категория: {{ master.category.name }}</p>
+                                                                <p class="text-description">{{ master.description }}</p>
+                                                                <p><span class="p-front">Дата публикации:</span> {{ master.publication_date }}</p>
+                                                                <p><span class="p-front">Категория:</span> {{ master.category.name }}</p>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -1,0 +1,43 @@
+/* карусели */
+.carousel-control-prev,
+.carousel-control-next {
+    opacity: 0;
+    pointer-events: auto;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover,
+.carousel-control-prev:focus,
+.carousel-control-next:focus {
+    opacity: 0;
+}
+
+.carousel-inner img {
+    width: 100%;
+    /* Ширина 100% от родительского контейнера */
+    height: 400px;
+    /* Фиксированная высота, измените по необходимости */
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-indicators li {
+    background-color: rgb(135, 224, 239);
+    /* Цвет для неактивных индикаторов */
+    border-radius: 50%;
+    list-style-type: none;
+    border: 2px solid black;
+}
+
+.carousel-indicators .active {
+    background-color: rgb(201, 162, 115);
+    /* Цвет для активного индикатора */
+    border-radius: 50%;
+    list-style-type: none;
+    border: 2px solid black;
+}

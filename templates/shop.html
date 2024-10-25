@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="{% static 'base.css' %}">
     <link rel="stylesheet" href="{% static 'shop.css' %}">
+    <link rel="stylesheet" href="{% static 'carousel-card.css' %}">
     <link rel="stylesheet" href="{% static 'bg.css' %}">
     <link rel="stylesheet" href="{% static 'scrollbar.css' %}">
     <link rel="stylesheet" href="{% static 'my_footer_css.css' %}">
@@ -119,6 +120,7 @@
                                             <p class="card-text">Цена: {{ product.price }} ₽</p>
                                             <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal{{ product.id }}">Узнать больше</a>
                                         </div>
+                                    </div>
                                 </div>
 
                                 <!-- Модальное окно для товара -->
@@ -126,8 +128,8 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content modal-card-text modal-css">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="productModalLabel">{{ product.title }}</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <h5 class="modal-title" id="productModalLabel">{{ product.title }}</h5>    
+                                                <button type="button" class="btn-close custom-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">
@@ -158,11 +160,24 @@
                                                         
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <p>{{ product.description|linebreaks }}</p>
-                                                        <p>Цена: {{ product.price }} ₽</p>
-                                                        <h6>Контакты продавца:</h6>
+                                                        <h5>{{ product.price }} ₽</h5>
+                                                        <br>
+                                                        <p class="text-description">{{ product.description }}</p>
+                                                        <br>
+                                                        <h5><span class="p-front">Контакты продавца:</span></h5>
                                                         {% for contact in product.seller_contacts %}
-                                                            <p>{{ contact.contact_type }}: {{ contact.value }}</p>
+                                                            <p>
+                                                                <span class="p-front">{{ contact.contact_type }}:</span>
+                                                                {% if contact.contact_type == "Телефон" %}
+                                                                    <a href="tel:{{ contact.value|urlencode }}">{{ contact.value }}</a>
+                                                                {% elif contact.contact_type == "Email" %}
+                                                                    <a href="mailto:{{ contact.value|urlencode }}">{{ contact.value }}</a>
+                                                                {% elif contact.contact_type == "Соц-сеть" %}
+                                                                    <a href="{{ contact.value }}" target="_blank">{{ contact.value }}</a>
+                                                                {% else %}
+                                                                    {{ contact.value }}
+                                                                {% endif %}
+                                                            </p>
                                                         {% empty %}
                                                             <p>Контактная информация отсутствует.</p>
                                                         {% endfor %}

@@ -87,7 +87,7 @@
                             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="true">
                                 <div class="carousel-inner" style="height: 400px; width: 100%;">
                                     {% for image in carousel_images %}
-                                    <div class="carousel-item {% if forloop.first %}active{% endif %}" style="height: 100%;">
+                                    <div class="carousel-item {% if forloop.first %}active{% endif %}" style="height: 100%; width:100%;">
                                         <img src="{{ image.image.url }}" class="d-block img-fluid" alt="{{ image.alt_text }}" 
                                             style="height: 100%; width: 100%;">
                                     </div>

@@ -4,7 +4,7 @@ from .models import *
 
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
-    extra = 3
+    extra = 8
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -13,17 +13,13 @@ class ProductAdmin(admin.ModelAdmin):
 
 class ContactInline(admin.TabularInline):
     model = Contact
-    extra = 3
+    extra = 6
 
 
 @admin.register(Seller)
 class SellerAdmin(admin.ModelAdmin):
     inlines = [ContactInline]
-
-
-@admin.register(Contact)
-class ContactAdmin(admin.ModelAdmin):
-    list_display = ("seller", "contact_type", "value")
+    list_display = ["name"]
 
 
 admin.site.register(Product, ProductAdmin)

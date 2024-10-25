@@ -1,4 +1,4 @@
-.carousel {
+.carousel>.carousel-inner {
     border: 6px solid rgb(201, 162, 115);
     border-radius: 5px;
     overflow: hidden;
@@ -10,6 +10,7 @@
     transition: transform 0.5s;
     display: none;
     height: 100%;
+    width: 100%;
 }
 
 .carousel-item.active {

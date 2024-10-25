@@ -19,14 +19,19 @@ class Seller(models.Model):
 
 
 class Contact(models.Model):
+    CONTACT_TYPE_CHOICES = [
+        ("Телефон", "Телефон"),
+        ("Email", "Email"),
+        ("Соц-сеть", "Соц-сеть"),
+    ]
     seller = models.ForeignKey(
         Seller, related_name="contacts", on_delete=models.CASCADE
     )
-    contact_type = models.CharField(max_length=100)
+    contact_type = models.CharField(max_length=100, choices=CONTACT_TYPE_CHOICES)
     value = models.CharField(max_length=200)
 
     def __str__(self) -> str:
-        return f"{self.contact_type}: {self.value}"
+        return f"{self.get_contact_type_display()}: {self.value}"
 
 
 class Product(models.Model):
