@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{% static 'scrollbar.css' %}">
     <link rel="stylesheet" href="{% static 'my_footer_css.css' %}">
     <title>Бьюсь Тату / Татуировки</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 </head>
 
 <body>
@@ -114,7 +115,7 @@
                                         </div>
                                     </div>
                                         {% for tattoo in tattoos %}
-                                        <div class="col-sm-6 mb-3 mb-sm-0 mt-4 tattoo-card">
+                                        <div class="col-lg-4 col-md-6 mb-3 mb-sm-0 mt-4 tattoo-card">
                                             <div class="card">
                                                 <div id="carouselTattoo{{ tattoo.id }}" class="carousel slide" data-bs-interval="false">
                                                     <ol class="carousel-indicators">
@@ -210,7 +211,7 @@
                                 <div class="row master-gallery">
                                     {% if masters %}
                                         {% for master in masters %}
-                                        <div class="col-sm-6 mb-3 mb-sm-0 mt-4 master-card">
+                                        <div class="col-lg-4 col-md-6 mb-3 mb-sm-0 mt-4 master-card">
                                             <div class="card">
                                                 <div id="carouselMaster{{ master.id }}" class="carousel slide" data-bs-interval="false">
                                                     <ol class="carousel-indicators">

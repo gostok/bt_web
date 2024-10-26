@@ -85,10 +85,19 @@ WSGI_APPLICATION = "bt_web.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR
+#         / "db.sqlite3",  # или просто 'db.sqlite3' если BASE_DIR не определен
+#     }
+# }
+
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "bt_web",
+        "NAME": "bt_web_db",
         "USER": "gostok",
         "PASSWORD": "goStok[@o",
         "HOST": "localhost",

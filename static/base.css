@@ -16,7 +16,7 @@ html {
     flex-direction: column;
     /* Позволяет футеру оставаться внизу */
     overflow-x: hidden;
-    overflow-y: scroll;
+
 }
 
 .background {
@@ -66,13 +66,13 @@ a {
 
 /* buttons */
 .btn.btn-secondary {
-    background: rgb(90, 149, 160);
-    color: black;
+    background: #425f7d;
+    color: #ffec00;
 }
 
 .btn.btn-primary {
-    background: rgb(135, 224, 239);
-    color: black;
+    background: #5b82ac;
+    color: #ffec00;
 }
 
 /* карточки */
@@ -86,6 +86,25 @@ a {
 .col-sm-6 .card-title {
     color: rgb(201, 162, 115);
 }
+
+.col-sm-12 .card {
+    background-color: rgba(36, 36, 62, 0.5);
+
+}
+
+.col-sm-12 .card-title {
+    color: rgb(201, 162, 115);
+}
+
+.col-md-6 .card {
+    background-color: rgba(36, 36, 62, 0.5);
+
+}
+
+.col-md-6 .card-title {
+    color: rgb(201, 162, 115);
+}
+
 
 .card-img-top {
     padding-top: 1em;

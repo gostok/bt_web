@@ -45,10 +45,37 @@
     /* Убираем отступ у последней колонки */
 }
 
+@media (max-width: 1024px) {
+    .map-container {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        border: 1px solid;
+    }
 
-@media (max-width: 767.98px) {
+    .contacts-conteiner {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .map-container {
+        height: 300px;
+    }
+
+    .contacts-conteiner-back {
+        border: 1px solid;
+    }
+
     .icon {
         margin: 0.2em;
         /* Уменьшаем отступы на мобильных устройствах */
+    }
+
+    .contacts-conteiner {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0 1em;
     }
 }

@@ -18,10 +18,7 @@
 
 /* phone/table */
 @media (max-width: 755px) {
-
     .card-shop {
         grid-template-columns: 1fr;
     }
-
-
 }
