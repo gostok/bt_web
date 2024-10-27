@@ -8,7 +8,7 @@ def home(request):
     carousel_images = CarouselImage.objects.all()
     blog_posts = BlogPost.objects.all().order_by("-published_date")
 
-    paginator = Paginator(blog_posts, 2)
+    paginator = Paginator(blog_posts, 3)
     page_number = request.GET.get("page")
     blog = paginator.get_page(page_number)
 

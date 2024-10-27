@@ -7,7 +7,7 @@ def shop(request):
     header_image = HeaderImage.objects.first()
     sidebar_news = SidebarNews.objects.all()
     product_list = Product.objects.all()
-    paginator = Paginator(product_list, 3)
+    paginator = Paginator(product_list, 9)
     page_number = request.GET.get("page")
     products = paginator.get_page(page_number)
 

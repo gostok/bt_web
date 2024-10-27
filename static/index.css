@@ -1,10 +1,6 @@
 /* Главный новостной блог */
 
 
-
-
-
-
 .full-text {
     display: none;
 }
@@ -19,17 +15,11 @@
 
 
 
-
-
 .media-links {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-
-
-
 
 
 

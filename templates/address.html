@@ -22,7 +22,7 @@
 
     <header>
 
-        <nav class="navbar navbar-expand-lg bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-bg-color">
             <div class="container-fluid">
                 <a class="navbar-brand n-b active" href="/">БЬЮСЬ ТАТУ</a>
 
@@ -83,7 +83,7 @@
                 <div class="col-lg-8 col-md-12 contacts-conteiner-back">
                     <div class="row mb-2">
                         <div class="col-lg-8 col-md-8 contacts-conteiner">
-                            <h2 class="mt-4" style="color: rgb(201, 162, 115);">Наш адрес</h2>
+                            <h2 class="text-center" style="color: #ffec01;">Наш адрес</h2>
                             <h4 style="margin: 1em; color: white;">
                                 г. Калининград, ул. Карла Маркса, д. 39
                             </h4>
@@ -93,10 +93,11 @@
                         <iframe
                             src="https://yandex.ru/map-widget/v1/?um=constructor%3A13fb70a949c3a5af95049543916c05ea9872ef2360b8d81fe09aea29eda7318c&amp;source=constructor"
                             width="842" height="571" frameborder="0" allowfullscreen="true" class="map-container"></iframe>
+                        <button id="toggleMap" class="toggle-map-button">Показать карту</button>
                     </div>
                     <div class="row">
                         <div class="col-lg-8 col-md-8 contacts-conteiner">
-                            <h2 class="mt-0 pt-0" style="color: rgb(201, 162, 115);">Мы в:</h2>
+                            <h2 class="text-center" style="color: #ffec01;">Наши соц-сети</h2>
                     
                             <div class="d-flex flex-wrap justify-content-center">
                                 <a href="#" class="icon">
@@ -117,8 +118,11 @@
                                 <a href="#" class="icon">
                                     <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/logo-2gis.png' %}" alt="2Gis">
                                 </a>
+                                
                             </div>
+                            
                         </div>
+                        <p style="font-size: 12px; text-align: right;">* Meta Platforms Instagram признана экстремистской организацией и запрещена на территории РФ</p>
                     </div>
                 </div>
 
@@ -126,9 +130,9 @@
                 <div class="col-lg-3 col-md-12">
                     <div class="row px-2">
                         <!-- сайдбар -->
-                        <div class="col-lg-12 sidebar my-4">
+                        <div class="col-lg-12 sidebar my-4 mt-0">
                             {% for news in sidebar_news %}
-                            <div class="card my-4">
+                            <div class="card my-4 mt-0">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ news.title }}</h5>
                                     <p class="card-text">{{ news.content }}</p>
@@ -150,7 +154,7 @@
 
 
 
-    <footer class="mt-4 mb-0 bg-dark footer-css">
+    <footer class="mt-4 mb-0 footer-bg-color footer-css">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-4 col-md-12 footer-text text-center" style="font-size: 16px; padding-top: 1em;">
@@ -184,6 +188,13 @@
                             <img class="footer-img" 
                                 src="{% static 'images/img_soc/wa.png' %}" alt="WhatsApp">
                         </a>
+                        <a href="#">
+                            <img class="footer-img" src="{% static 'images/img_soc/pngwing.com.png' %}" alt="Яндекс Карта">
+                        </a>
+                        <a href="#">
+                            <img class="footer-img" src="{% static 'images/img_soc/logo-2gis.png' %}" alt="2Gis">
+                        </a>
+                        <p style="font-size: 12px; text-align: right;">* Meta Platforms Instagram признана экстремистской организацией<br> и запрещена на территории РФ</p>
                     </div>
                 </div>
             </div>
@@ -193,6 +204,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script>
+        document.getElementById('toggleMap').addEventListener('click', function() {
+            const map = document.querySelector('.map-container');
+            if (map.style.display === 'none' || map.style.display === '') {
+                map.style.display = 'block'; // Показываем карту
+                this.textContent = 'Скрыть карту'; // Меняем текст кнопки
+            } else {
+                map.style.display = 'none'; // Скрываем карту
+                this.textContent = 'Показать карту'; // Меняем текст кнопки
+            }
+        });
+    </script>
+        
 </body>
 
 </html>

@@ -23,7 +23,7 @@
 
     <header>
 
-        <nav class="navbar navbar-expand-lg bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-bg-color">
             <div class="container-fluid">
                 <a class="navbar-brand n-b active" href="/">БЬЮСЬ ТАТУ</a>
 
@@ -85,11 +85,27 @@
                     <div class="row">
                         <div class="col text-center btn-galelery">
                             <button type="button" class="btn btn-primary btn-lg active" onclick="showTattooGallery()"
-                                id="tattoo-button">Тату Галерея</button>
+                                id="tattoo-button" style="width: 176px;">Тату Галерея</button>
                             <button type="button" class="btn btn-secondary btn-lg" onclick="showMasterGallery()"
-                                id="master-button">Мастера</button>
+                                id="master-button" style="width: 176px;">Мастера</button>
                         </div>
                     </div>
+                    {% if tattoos %}
+                    <!-- Категории -->
+                    <div class="tattoo-category text-center mt-4">
+                        <div class="dropdown d-inline">
+                            <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="width: 176px;">
+                                Категории
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                                <li><a class="dropdown-item" href="?category=all">Все категории</a></li>
+                                {% for category in categories %}
+                                    <li><a class="dropdown-item" href="?category={{ category.id }}">{{ category.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    {% endif %}
 
 
                     <div class="col-lg-12 col-md-12 mt-4">
@@ -100,20 +116,7 @@
                                 <div class="row tattoo-gallery">
 
                                     {% if tattoos %}
-                                    <!-- Категории -->
-                                    <div class="tattoo-category text-center">
-                                        <div class="dropdown d-inline">
-                                            <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                                Категории
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                                                <li><a class="dropdown-item" href="?category=all">Все категории</a></li>
-                                                {% for category in categories %}
-                                                    <li><a class="dropdown-item" href="?category={{ category.id }}">{{ category.name }}</a></li>
-                                                {% endfor %}
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    
                                         {% for tattoo in tattoos %}
                                         <div class="col-lg-4 col-md-6 mb-3 mb-sm-0 mt-4 tattoo-card">
                                             <div class="card">
@@ -241,7 +244,7 @@
                                                     <br>
                                                     <p class="p-space">{{ master.publication_date }}</p>
                                                     
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#masterModal{{ master.id }}">
+                                                    <button type="button" class="btn btn-primary pt-0" data-bs-toggle="modal" data-bs-target="#masterModal{{ master.id }}">
                                                         Узнать больше
                                                     </button>
                                                     
@@ -426,7 +429,7 @@
 
 
 
-    <footer class="mt-4 mb-0 bg-dark footer-css">
+    <footer class="mt-4 mb-0 footer-bg-color footer-css">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-4 col-md-12 footer-text text-center" style="font-size: 16px; padding-top: 1em;">
@@ -460,6 +463,13 @@
                             <img class="footer-img" 
                                 src="{% static 'images/img_soc/wa.png' %}" alt="WhatsApp">
                         </a>
+                        <a href="#">
+                            <img class="footer-img" src="{% static 'images/img_soc/pngwing.com.png' %}" alt="Яндекс Карта">
+                        </a>
+                        <a href="#">
+                            <img class="footer-img" src="{% static 'images/img_soc/logo-2gis.png' %}" alt="2Gis">
+                        </a>
+                        <p style="font-size: 12px; text-align: right;">* Meta Platforms Instagram признана экстремистской организацией<br> и запрещена на территории РФ</p>
                     </div>
                 </div>
             </div>

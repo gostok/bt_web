@@ -15,10 +15,21 @@
   margin: 0.5em;
 }
 
+.footer-text a {
+  color: #ffec01;
+}
 
 /* navbar */
+.navbar-bg-color {
+  background-color: rgba(36, 36, 62);
+}
+
+.footer-bg-color {
+  background-color: rgba(36, 36, 62);
+}
+
 .navbar-brand.n-b {
-  color: rgb(201, 162, 115);
+  color: #ffec01;
 }
 
 .nav-link {
@@ -26,15 +37,15 @@
 }
 
 .nav-link:hover {
-  color: rgb(189, 47, 47);
+  color: #8f3583;
 }
 
 .navbar-nav .nav-link.active {
-  color: rgb(201, 162, 115);
+  color: #ffec01;
 }
 
 .navbar-toggler {
-  background-color: rgb(175, 170, 170);
+  background-color: rgba(36, 36, 62);
 }
 
 .navbar-brand {
@@ -44,6 +55,8 @@
 
 
 /* sidebar */
+
+
 .sidebar .card {
   background-color: rgba(36, 36, 62, 0.5);
   position: relative;
@@ -51,5 +64,5 @@
 }
 
 .sidebar .card-title {
-  color: rgb(201, 162, 115);
+  color: #ffec01;
 }

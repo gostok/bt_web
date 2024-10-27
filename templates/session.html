@@ -24,7 +24,7 @@
 
     <header>
 
-        <nav class="navbar navbar-expand-lg bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-bg-color">
             <div class="container-fluid">
                 <a class="navbar-brand n-b active" href="/">БЬЮСЬ ТАТУ</a>
 
@@ -97,7 +97,7 @@
                         <form method="POST" id="session-form">
                             {% csrf_token %}
                             <div class="mb-3">
-                                <label for="date-display">Дата:</label>
+                                <label for="date-display"><span style="color: #ffec01;">Дата:</span></label>
                                 <select id="date-display" name="date" class="form-control" required>
                                     <option value="">Выберите дату</option>
                                     {% for date in available_dates %}
@@ -107,19 +107,19 @@
                             </div>
                             
                             <div class="mb-3">
-                                <label for="time-display">Время:</label>
+                                <label for="time-display"><span style="color: #ffec01;">Время:</span></label>
                                 <select id="time-display" name="time" class="form-control" required>
                                     <option value="">Выберите время</option>
                                 </select>
                             </div>
                 
                             <div class="mb-3">
-                                <label for="name">Имя:</label>
+                                <label for="name"><span style="color: #ffec01;">Имя:</span></label>
                                 <input type="text" id="name" name="name" class="form-control" required>
                             </div>
                 
                             <div class="mb-3">
-                                <label for="contact_info">Контакт:</label>
+                                <label for="contact_info"><span style="color: #ffec01;">Контакт:</span></label>
                                 <input type="text" id="contact_info" name="contact_info" class="form-control" required>
                             </div>
                 
@@ -192,9 +192,9 @@
                 <div class="col-lg-3 col-md-12">
                     <div class="row px-2">
                         <!-- сайдбар -->
-                        <div class="col-lg-12 sidebar my-4">
+                        <div class="col-lg-12 sidebar my-4 mt-0">
                             {% for news in sidebar_news %}
-                            <div class="card my-4">
+                            <div class="card my-4 mt-0">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ news.title }}</h5>
                                     <p class="card-text">{{ news.content }}</p>
@@ -213,7 +213,7 @@
 
 
 
-    <footer class="mt-4 mb-0 bg-dark footer-css">
+    <footer class="mt-4 mb-0 footer-bg-color footer-css">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-4 col-md-12 footer-text text-center" style="font-size: 16px; padding-top: 1em;">
@@ -247,6 +247,13 @@
                             <img class="footer-img" 
                                 src="{% static 'images/img_soc/wa.png' %}" alt="WhatsApp">
                         </a>
+                        <a href="#">
+                            <img class="footer-img" src="{% static 'images/img_soc/pngwing.com.png' %}" alt="Яндекс Карта">
+                        </a>
+                        <a href="#">
+                            <img class="footer-img" src="{% static 'images/img_soc/logo-2gis.png' %}" alt="2Gis">
+                        </a>
+                        <p style="font-size: 12px; text-align: right;">* Meta Platforms Instagram признана экстремистской организацией<br> и запрещена на территории РФ</p>
                     </div>
                 </div>
             </div>
