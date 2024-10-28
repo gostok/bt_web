@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{% static 'tattoo.css' %}">
     <link rel="stylesheet" href="{% static 'scrollbar.css' %}">
     <link rel="stylesheet" href="{% static 'my_footer_css.css' %}">
+    <link rel="stylesheet" href="{% static 'media_queries.css' %}">
     <title>Бьюсь Тату / Татуировки</title>
     <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 </head>
@@ -28,8 +29,8 @@
                 <a class="navbar-brand n-b active" href="/">БЬЮСЬ ТАТУ</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="navtoggler-b">
+                    <span class="navbar-toggler-icon" id="navtoggler-b-i"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -118,8 +119,8 @@
                                     {% if tattoos %}
                                     
                                         {% for tattoo in tattoos %}
-                                        <div class="col-lg-4 col-md-6 mb-3 mb-sm-0 mt-4 tattoo-card">
-                                            <div class="card">
+                                        <div class="col-lg-4 col-md-6 col-sm-12 mb-3 mt-4 tattoo-card other-card">
+                                            <div class="card card-tattoo">
                                                 <div id="carouselTattoo{{ tattoo.id }}" class="carousel slide" data-bs-interval="false">
                                                     <ol class="carousel-indicators">
                                                         {% for image in tattoo.images.all %}
@@ -142,11 +143,11 @@
                                                         <span class="visually-hidden">Next</span>
                                                     </button>
                                                 </div>
-                                                <div class="card-body">
+                                                <div class="card-body mt-4">
                                                     <h5 class="card-title">{{ tattoo.title }}</h5>
                                                     <p class="card-text">{{ tattoo.description|truncatechars:24 }}</p>
                                                     <br>
-                                                    <p class="p-space">{{ tattoo.publication_date }}</p>
+                                                    <p class="p-space">{{ tattoo.publication_date|date:"d.m.y | H:i" }}</p>
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tattooModal{{ tattoo.id }}">
                                                         Узнать больше
                                                     </button>
@@ -214,8 +215,8 @@
                                 <div class="row master-gallery">
                                     {% if masters %}
                                         {% for master in masters %}
-                                        <div class="col-lg-4 col-md-6 mb-3 mb-sm-0 mt-4 master-card">
-                                            <div class="card">
+                                        <div class="col-lg-4 col-md-6 col-sm-12 mb-3 mt-4 master-card other-card">
+                                            <div class="card card-master">
                                                 <div id="carouselMaster{{ master.id }}" class="carousel slide" data-bs-interval="false">
                                                     <ol class="carousel-indicators">
                                                         {% for image in master.images.all %}
@@ -238,13 +239,13 @@
                                                         <span class="visually-hidden">Next</span>
                                                     </button>
                                                 </div>
-                                                <div class="card-body">
+                                                <div class="card-body mt-4">
                                                     <h5 class="card-title">{{ master.name }}</h5>
                                                     <p class="card-text">{{ master.description|truncatechars:24 }}</p>
                                                     <br>
-                                                    <p class="p-space">{{ master.publication_date }}</p>
+                                                    <p class="p-space">{{ master.publication_date|date:"d.m.y | H:i" }}</p>
                                                     
-                                                    <button type="button" class="btn btn-primary pt-0" data-bs-toggle="modal" data-bs-target="#masterModal{{ master.id }}">
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#masterModal{{ master.id }}">
                                                         Узнать больше
                                                     </button>
                                                     

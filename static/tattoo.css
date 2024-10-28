@@ -35,29 +35,3 @@
     text-align: right;
     font-size: 12px;
 }
-
-/* phone/table */
-
-@media (max-width: 755px) {
-
-    .tattoo-card,
-    .master-card {
-        grid-template-columns: 1fr;
-    }
-
-    .btn-galelery {
-        flex-direction: column;
-        align-items: center;
-
-    }
-
-    .tattoo-category {
-        flex-direction: column;
-        align-items: center;
-    }
-
-
-
-
-
-}

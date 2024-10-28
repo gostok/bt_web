@@ -11,11 +11,11 @@
     
     <link rel="stylesheet" href="{% static 'base.css' %}">
     <link rel="stylesheet" href="{% static 'index.css' %}">
-    <link rel="stylesheet" href="{% static 'blog-card.css' %}">
     <link rel="stylesheet" href="{% static 'bg.css' %}">
     <link rel="stylesheet" href="{% static 'carousel.css' %}">
     <link rel="stylesheet" href="{% static 'scrollbar.css' %}">
     <link rel="stylesheet" href="{% static 'my_footer_css.css' %}">
+    <link rel="stylesheet" href="{% static 'media_queries.css' %}">
     <title>Бьюсь - Главная</title>
     <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 </head>
@@ -31,8 +31,8 @@
                 <a class="navbar-brand n-b active" href="#">БЬЮСЬ ТАТУ</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="navtoggler-b">
+                    <span class="navbar-toggler-icon" id="navtoggler-b-i"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -114,10 +114,10 @@
                         <div class="col-lg-12 col-md-12 mt-4">
                             <div class="row">
                                 {% for post in blog_posts %}
-                                <div class="col-lg-4 col-md-6 mb-3 mb-sm-0 mt-4 col-card-b card-base-css">
+                                <div class="col-lg-4 col-md-6 mb-3 col-sm-12 mt-4 blog-card">
                                     <div class="card card-css">
                                         {% if post.image %}
-                                        <div class="image-wrapper mt-2 md-2">
+                                        <div class="image-wrapper-b">
                                             <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
                                         </div>
                                         {% endif %}
@@ -129,7 +129,7 @@
                                             </p>
                                             <a class="btn btn-primary" onclick="toggleText(this)">Узнать
                                                 больше</a>
-                                            <p class="p-space">{{ post.published_date }}
+                                            <p class="p-space">{{ post.published_date|date:"d.m.y | H:i" }}
                                             </p>
                                         </div>
                                     </div>
@@ -217,7 +217,7 @@
                     <p>All Rights Reserved 2024</p>
                     <p class="mb-0" style="font-size: 14px;">БЬЮСЬ ТАТУ-СТУДИЯ</p>
                     <p class="mt-0" style="font-size: 14px;">г.Калининград, ул.Карла Маркса, д.39</p>
-                    <p style="font-size: 10px;">Created by gostok</p>
+                    <p style="font-size: 10px;">Created by <a href="https://t.me/ateccc" style="color: white; text-decoration: underline;">gostok</a></p>
                 </div>
                 <div class="col-lg-4 col-md-12 footer-text text-center mt-4">
                     <p>

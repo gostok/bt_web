@@ -20,6 +20,7 @@ html {
 
 }
 
+
 .background {
     position: fixed;
     /* Фиксирует фон */
@@ -89,71 +90,51 @@ a {
 /* карточки */
 
 
-
-.col-sm-6 .card {
+.other-card .card {
     background-color: rgba(36, 36, 62, 0.5);
-    width: 400px;
-    height: 400px;
+    aspect-ratio: 1 / 1.5;
+    width: 100%;
+    height: 100%;
+
 }
 
-.col-sm-6 .card-body {
+.other-card .card-body {
     padding-top: 0;
 }
 
-.col-sm-6 .card-title {
+.other-card .card-title {
     color: #ffec01;
 }
 
-.col-sm-12 .card {
+
+
+
+.blog-card .card {
     background-color: rgba(36, 36, 62, 0.5);
-    width: 400px;
-    height: 400px;
-}
-
-
-
-.col-sm-12 .card-title {
-    color: #ffec01;
-}
-
-.col-md-6 .card {
-    background-color: rgba(36, 36, 62, 0.5);
-}
-
-
-
-.col-md-6 .card-title {
-    color: #ffec01;
-}
-
-
-.card-img-top {
-    padding-top: 1em;
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.image-wrapper {
+    aspect-ratio: 1 / 1;
     width: 100%;
     height: 100%;
+}
+
+.blog-card .card-title {
+    color: #ffec01;
+}
+
+
+
+.image-wrapper-b {
+    width: 100%;
+    height: auto;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.image-wrapper img {
+.image-wrapper-b img {
     width: 100%;
-    /* Ширина 100% от родительского контейнера */
     height: 100%;
-    /* Фиксированная высота, измените по необходимости */
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 12px;
     object-fit: contain;
 }
 

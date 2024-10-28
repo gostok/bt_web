@@ -9,16 +9,3 @@
     text-align: right;
     font-size: 12px;
 }
-
-
-
-
-
-
-
-/* phone/table */
-@media (max-width: 755px) {
-    .card-shop {
-        grid-template-columns: 1fr;
-    }
-}

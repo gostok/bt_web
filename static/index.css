@@ -34,7 +34,7 @@
         display: none;
     }
 
-    .col-sm-6.card {
+    .col-sm-12.card {
         grid-template-columns: 1fr;
     }
 }
