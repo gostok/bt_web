@@ -127,17 +127,40 @@
                                                 <span class="preview-text">{{ post.content|truncatewords:10 }}</span>
                                                 <span class="full-text" id="post-content" style="display: none;">{{ post.content }}</span>
                                             </p>
-                                            <a class="btn btn-primary" onclick="toggleText(this)">Узнать
-                                                больше</a>
-                                            <p class="p-space">{{ post.published_date|date:"d.m.y | H:i" }}
-                                            </p>
+                                            <div class="text-center">
+                                                <a class="btn btn-primary" onclick="openPostModal('{{ post.title }}', '{{ post.image.url }}', '{{ post.content|escapejs }}', '{{ post.published_date }}')">Узнать больше</a>
+                                            </div>
+                                            <p class="p-space">{{ post.published_date|date:"d.m.y | H:i" }}</p>
                                         </div>
                                     </div>
                                 </div>
+                                
                                 {% endfor %}
                             </div>
                         </div>
-                        
+                        <!-- Модальное окно для поста -->
+                        <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content modal-card-text modal-css">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="postModalLabel">Заголовок поста</h5>
+                                        <button type="button" class="btn-close custom-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="img-cont">
+                                            <img id="postImage" class="img-fluid" alt="Изображение поста">
+                                        </div>
+                                        <p id="postDescription" class="text-description" style="white-space: pre-wrap;">Описание поста</p>
+                                        <br>
+                                        <br>
+                                        <p class="p-space" id="postDate">Дата публикации</p>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <!-- Пагинация -->
                         <div class="row">
                             <nav aria-label="Page navigation example">
@@ -280,21 +303,18 @@
     </script>
 
     <script>
-        function toggleText(button) {
-            const cardText = button.previousElementSibling; // Элемент p с классом card-text
-            const previewText = cardText.querySelector('.preview-text');
-            const fullText = cardText.querySelector('.full-text');
-
-            if (fullText.style.display === 'none') {
-                previewText.style.display = 'none';
-                fullText.style.display = 'inline';
-                button.innerHTML = 'Скрыть';
-            } else {
-                previewText.style.display = 'inline';
-                fullText.style.display = 'none';
-                button.innerHTML = 'Узнать больше';
-            }
+        function openPostModal(title, imageUrl, description, publishedDate) {
+            // Заполняем данные в модальном окне
+            document.getElementById('postModalLabel').innerText = title;
+            document.getElementById('postImage').src = imageUrl;
+            document.getElementById('postDescription').innerText = description;
+            document.getElementById('postDate').innerText = publishedDate;
+        
+            // Открываем модальное окно
+            const modal = new bootstrap.Modal(document.getElementById('postModal'));
+            modal.show();
         }
+        
     </script>
 
 

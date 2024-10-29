@@ -1,6 +1,26 @@
 /* Главный новостной блог */
 
 
+
+.modal-body img {
+    float: left;
+    margin: 0 10px 10px 0;
+    width: 350px;
+    height: 350px;
+}
+
+
+
+.text-description {
+    font-size: 14px;
+    /* Размер шрифта для описания */
+    line-height: 1.5;
+    /* Межстрочный интервал для лучшего чтения */
+    flex-grow: 1;
+    /* Позволяет описанию занимать все доступное пространство */
+}
+
+
 .full-text {
     display: none;
 }

@@ -85,28 +85,30 @@
                     
                     <div class="row">
                         <div class="col text-center btn-galelery">
-                            <button type="button" class="btn btn-primary btn-lg active" onclick="showTattooGallery()"
-                                id="tattoo-button" style="width: 176px;">Тату Галерея</button>
-                            <button type="button" class="btn btn-secondary btn-lg" onclick="showMasterGallery()"
-                                id="master-button" style="width: 176px;">Мастера</button>
+                            <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-primary btn-lg flex-fill mx-1" onclick="showTattooGallery()" id="tattoo-button">Тату Галерея</button>
+                                <button type="button" class="btn btn-secondary btn-lg flex-fill mx-1" onclick="showMasterGallery()" id="master-button">Мастера</button>
+                                {% if tattoos %}
+                                <!-- Категории -->
+                                <div class="tattoo-category">
+                                    <div class="dropdown d-inline">
+                                        <button class="btn btn-primary btn-lg dropdown-toggle flex-fill mx-1" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Категории
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                                            <li><a class="dropdown-item" href="?category=all">Все категории</a></li>
+                                            {% for category in categories %}
+                                                <li><a class="dropdown-item" href="?category={{ category.id }}">{{ category.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
-                    {% if tattoos %}
-                    <!-- Категории -->
-                    <div class="tattoo-category text-center mt-4">
-                        <div class="dropdown d-inline">
-                            <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="width: 176px;">
-                                Категории
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                                <li><a class="dropdown-item" href="?category=all">Все категории</a></li>
-                                {% for category in categories %}
-                                    <li><a class="dropdown-item" href="?category={{ category.id }}">{{ category.name }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                    {% endif %}
+                    
+                    
 
 
                     <div class="col-lg-12 col-md-12 mt-4">
@@ -148,28 +150,30 @@
                                                     <p class="card-text">{{ tattoo.description|truncatechars:24 }}</p>
                                                     <br>
                                                     <p class="p-space">{{ tattoo.publication_date|date:"d.m.y | H:i" }}</p>
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tattooModal{{ tattoo.id }}">
-                                                        Узнать больше
-                                                    </button>
+                                                    <div class="text-center">
+                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tattooModal{{ tattoo.id }}">
+                                                            Узнать больше
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- Модальное окно для татуировки -->
-                                        <div class="modal fade mt-4" id="tattooModal{{ tattoo.id }}" tabindex="-1" role="dialog" aria-labelledby="tattooModalLabel{{ tattoo.id }}" aria-hidden="true">
+                                        <div class="modal fade mt-4 modal-bg-bl-front" id="tattooModal{{ tattoo.id }}" tabindex="-1" role="dialog" aria-labelledby="tattooModalLabel{{ tattoo.id }}" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content modal-card-text modal-css">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="tattooModalLabel{{ tattoo.id }}">{{ tattoo.title }}</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <button type="button" class="btn-close custom-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <!-- Карусель изображений -->
-                                                                <div id="carouselTattoo{{ tattoo.id }}" class="carousel slide" data-bs-ride="false">
+                                                                <div id="modalCarouselTattoo{{ tattoo.id }}" class="carousel slide" data-bs-ride="false">
                                                                     <ol class="carousel-indicators">
                                                                         {% for image in tattoo.images.all %}
-                                                                        <li data-bs-target="#carouselTattoo{{ tattoo.id }}" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" id="liCarouselna"></li>
+                                                                        <li id="liModulCarouselna" data-bs-target="#modalCarouselTattoo{{ tattoo.id }}" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
                                                                         {% endfor %}
                                                                     </ol>
                                                                     <div class="carousel-inner">
@@ -179,11 +183,11 @@
                                                                         </div>
                                                                         {% endfor %}
                                                                     </div>
-                                                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselTattoo{{ tattoo.id }}" data-bs-slide="prev">
+                                                                    <button class="carousel-control-prev" type="button" data-bs-target="#modalCarouselTattoo{{ tattoo.id }}" data-bs-slide="prev">
                                                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                                         <span class="visually-hidden">Previous</span>
                                                                     </button>
-                                                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselTattoo{{ tattoo.id }}" data-bs-slide="next">
+                                                                    <button class="carousel-control-next" type="button" data-bs-target="#modalCarouselTattoo{{ tattoo.id }}" data-bs-slide="next">
                                                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                                         <span class="visually-hidden">Next</span>
                                                                     </button>
@@ -191,14 +195,9 @@
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <p class="text-description">{{ tattoo.description }}</p>
-                    
                                                                 <p><span class="p-front">Мастер:</span> {{ tattoo.master.name }}</p>
-                                                                
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -245,30 +244,32 @@
                                                     <br>
                                                     <p class="p-space">{{ master.publication_date|date:"d.m.y | H:i" }}</p>
                                                     
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#masterModal{{ master.id }}">
-                                                        Узнать больше
-                                                    </button>
+                                                    <div class="text-center">
+                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tattooModal{{ tattoo.id }}">
+                                                            Узнать больше
+                                                        </button>
+                                                    </div>
                                                     
                                                 </div>
                                             </div>
                                         </div>
 
                                         <!-- Модальное окно для мастера -->
-                                        <div class="modal fade mt-4" id="masterModal{{ master.id }}" tabindex="-1" role="dialog" aria-labelledby="masterModalLabel{{ master.id }}" aria-hidden="true">
+                                        <div class="modal fade mt-4 modal-bg-bl-front" id="masterModal{{ master.id }}" tabindex="-1" role="dialog" aria-labelledby="masterModalLabel{{ master.id }}" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content modal-card-text modal-css">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="masterModalLabel{{ master.id }}">{{ master.name }}</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <button type="button" class="btn-close custom-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <!-- Карусель изображений -->
-                                                                <div id="carouselMaster{{ master.id }}" class="carousel slide" data-bs-ride="false">
+                                                                <div id="modalCarouselMaster{{ master.id }}" class="carousel slide" data-bs-ride="false">
                                                                     <ol class="carousel-indicators">
                                                                         {% for image in master.images.all %}
-                                                                        <li data-bs-target="#carouselMaster{{ master.id }}" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" id="liCarouselna"></li>
+                                                                        <li id="liModulCarouselna" data-bs-target="#modalCarouselMaster{{ master.id }}" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
                                                                         {% endfor %}
                                                                     </ol>
                                                                     <div class="carousel-inner">
@@ -278,23 +279,22 @@
                                                                         </div>
                                                                         {% endfor %}
                                                                     </div>
-                                                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselMaster{{ master.id }}" data-bs-slide="prev">
+                                                                    <button class="carousel-control-prev" type="button" data-bs-target="#modalCarouselMaster{{ master.id }}" data-bs-slide="prev">
                                                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                                         <span class="visually-hidden">Previous</span>
                                                                     </button>
-                                                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselMaster{{ master.id }}" data-bs-slide="next">
+                                                                    <button class="carousel-control-next" type="button" data-bs-target="#modalCarouselMaster{{ master.id }}" data-bs-slide="next">
                                                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                                         <span class="visually-hidden">Next</span>
                                                                     </button>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
-                                                                <p class="text-description">{{ master.description }}</p>     
+                                                                <p class="text-description">{{ master.description }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
                                                         <a href="?category={{ master.category.id }}" class="btn btn-primary">Посмотреть татуировки {{ master.name }}</a>
                                                     </div>
                                                 </div>

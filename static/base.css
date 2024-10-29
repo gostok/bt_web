@@ -58,19 +58,20 @@ a {
 .btn.btn-secondary {
     background: rgba(36, 36, 62);
     border: 1px solid;
-    color: #ffec00;
+    color: #8f3583;
 }
 
 .btn.btn-primary {
     background: rgba(36, 36, 62);
     border: 1px solid;
     color: #ffec00;
+
 }
 
-.btn.btn-primary:hover {
+.btn.btn-secondary:hover {
     background: rgba(36, 36, 62);
     border: 1px solid;
-    color: #8f3583;
+    color: #ffec00;
 }
 
 .toggle-map-button {
@@ -143,6 +144,8 @@ a {
 
 
 /* модальное окно */
+
+
 .modal-css {
     border: 2px solid;
     border-radius: 5px;
@@ -173,7 +176,7 @@ a {
 }
 
 .custom-close:hover {
-    background-color: rgb(201, 162, 115);
+    background-color: #ffec01;
 }
 
 .text-descriptiont {

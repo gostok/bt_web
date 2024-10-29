@@ -44,3 +44,20 @@
     list-style-type: none;
     border: 1px solid black;
 }
+
+/* модальные окна */
+.carousel-indicators #liModulCarouselna {
+    background-color: rgb(155, 44, 135);
+    /* Цвет для неактивных индикаторов */
+    border-radius: 10%;
+    list-style-type: none;
+    border: 1px solid black;
+}
+
+.carousel-indicators #liModulCarouselna.active {
+    background-color: #ffec01;
+    /* Цвет для активного индикатора */
+    border-radius: 20%;
+    list-style-type: none;
+    border: 1px solid black;
+}

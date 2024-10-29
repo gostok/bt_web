@@ -10,11 +10,23 @@ class CarouselImage(models.Model):
         return self.alt_text
 
 
+def validate_image_blog(image):
+    if image.width != 500 or image.height != 500:
+        raise ValidationError(
+            "Разрешение изображения должно быть не меньше 2560х1440 пикселей."
+        )
+
+
 class BlogPost(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     short_description = models.CharField(max_length=255, null=True, blank=True)
-    image = models.ImageField(upload_to="blog_images/", null=True, blank=True)
+    image = models.ImageField(
+        upload_to="blog_images/",
+        null=True,
+        blank=True,
+        validators=[validate_image_blog],
+    )
     published_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
