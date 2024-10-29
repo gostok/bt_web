@@ -96,7 +96,7 @@
                                             <div id="carouselCard{{ product.id }}" class="carousel slide">
                                                 <ol class="carousel-indicators">
                                                     {% for image in product.images.all %}
-                                                    <li data-bs-target="#carouselCard{{ product.id }}" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
+                                                    <li data-bs-target="#carouselCard{{ product.id }}" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" id="liCarouselna"></li>
                                                     {% endfor %}
                                                 </ol>
                                                 <div class="carousel-inner">
@@ -141,7 +141,7 @@
                                                         <div id="carouselExample{{ product.id }}" class="carousel slide"> 
                                                             <ol class="carousel-indicators">
                                                                 {% for image in product.images.all %}
-                                                                <li data-bs-target="#carouselExample{{ product.id }}" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
+                                                                <li data-bs-target="#carouselExample{{ product.id }}" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" id="liCarouselna"></li>
                                                                 {% endfor %}
                                                             </ol>
                                                             <div class="carousel-inner">

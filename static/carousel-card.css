@@ -14,12 +14,10 @@
 
 
 .carousel {
+    position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 12px;
 }
 
@@ -28,18 +26,19 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+    transition: transform 0.5s ease;
 }
 
-.carousel-indicators li {
-    background-color: rgb(36, 36, 62);
+.carousel-indicators #liCarouselna {
+    background-color: rgb(155, 44, 135);
     /* Цвет для неактивных индикаторов */
     border-radius: 10%;
     list-style-type: none;
     border: 1px solid black;
 }
 
-.carousel-indicators .active {
-    background-color: rgb(201, 162, 115);
+.carousel-indicators #liCarouselna.active {
+    background-color: #ffec01;
     /* Цвет для активного индикатора */
     border-radius: 20%;
     list-style-type: none;
