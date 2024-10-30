@@ -9,3 +9,12 @@
     padding-left: 2em;
     background-color: rgba(36, 36, 62, 0.5);
 }
+
+
+
+
+.footer-img-s {
+    border-radius: 10%;
+    width: 34px;
+    margin: 0.5em;
+}

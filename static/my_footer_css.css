@@ -23,6 +23,8 @@
   background-color: rgba(36, 36, 62);
 }
 
+
+
 /* navbar */
 .navbar-bg-color {
   background-color: rgba(36, 36, 62);
@@ -74,6 +76,7 @@
   background-color: rgba(36, 36, 62, 0.5);
   position: relative;
   height: auto;
+  margin: 1em;
 }
 
 .sidebar .card-title {

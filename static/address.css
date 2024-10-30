@@ -5,6 +5,28 @@
 }
 
 
+#toggleMap {
+    display: none;
+    z-index: 100;
+    background: rgba(36, 36, 62);
+    border: 1px solid;
+    color: #8f3583;
+}
+
+#toggleMap:hover {
+    background: rgba(36, 36, 62);
+    border: 1px solid;
+    color: #ffec00;
+}
+
+#toggleMap.show {
+    background: rgba(36, 36, 62);
+    border: 1px solid;
+    color: #ffec00;
+}
+
+
+
 
 .map-container {
     border: 2px solid;
