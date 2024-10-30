@@ -9,6 +9,8 @@ class ProductImageInline(admin.TabularInline):
 
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImageInline]
+    list_display = ["title", "price", "discount"]
+    fields = ["title", "price", "discount", "description", "seller"]
 
 
 class ContactInline(admin.TabularInline):

@@ -9,3 +9,16 @@
     text-align: right;
     font-size: 12px;
 }
+
+.discount-badge {
+    background: #8f3583;
+    font-size: 20px;
+    position: absolute;
+    /* Абсолютное позиционирование */
+    top: 10px;
+    /* Отступ от верхней грани */
+    right: 10px;
+    /* Отступ от правой грани */
+    z-index: 10;
+    /* Убедитесь, что элемент находится над другими элементами */
+}

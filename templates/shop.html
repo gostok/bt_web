@@ -115,12 +115,22 @@
                                                     <span class="visually-hidden">Next</span>
                                                 </button>
                                             </div>
-                                            
+                                            {% if product.discount > 0 %}
+                                            <span class="badge discount-badge">Скидка {{ product.discount }}%</span>
+                                            {% endif %}
                                         </div>
                                         {% endif %}
                                         <div class="card-body">
                                             <h5 class="card-title">{{ product.title }}</h5>
-                                            <p class="card-text">Цена: {{ product.price }} ₽</p>
+                                            <p class="card-text">
+                                                {% if product.discount > 0 %}
+
+                                                <span style="text-decoration: line-through;">{{ product.price }} ₽</span>
+                                                <span class="text-success">{{ product.discounted_price|floatformat:2 }} ₽</span>
+                                                {% else %}
+                                                Цена: {{ product.price }} ₽
+                                                {% endif %}
+                                            </p>
                                             <div class="text-center">
                                                 <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal{{ product.id }}">Узнать больше</a>
                                             </div>
@@ -282,11 +292,12 @@
                     <p class="mt-0" style="font-size: 14px;">г.Калининград, ул.Карла Маркса, д.39</p>
                     <p style="font-size: 10px;">Created by gostok</p>
                 </div>
-                <div class="col-lg-4 col-md-12 footer-text text-center mt-4">
+                <div class="col-lg-4 col-md-12 footer-text text-center mt-3">
                     <p>
                         <a href="/address/">Contacts</a> <br>
                         <a href="https://t.me/daedsierutan">Job</a> <br>
                         <a href="{% url 'tattoo' %}?tab=master">Our Team</a> <br>
+                        <a href="/admin/">Admin</a> 
                     </p>
                 </div>
                 <div class="col-lg-4 col-md-12 media-links">

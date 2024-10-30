@@ -37,11 +37,18 @@ class Contact(models.Model):
 class Product(models.Model):
     title = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    discount = models.DecimalField(max_digits=3, decimal_places=0, default=0)
     description = models.TextField()
     seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return f"{self.seller}: {self.title}"
+
+    @property
+    def discounted_price(self):
+        if self.discount > 0:
+            return self.price * (1 - self.discount / 100)
+        return self.price
 
 
 def validate_image_product(image):
