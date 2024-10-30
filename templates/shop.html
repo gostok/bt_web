@@ -130,7 +130,7 @@
 
                                 <!-- Модальное окно для товара -->
                                 <div class="modal fade mt-4 modal-bg-bl-front" id="productModal{{ product.id }}" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content modal-card-text modal-css">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="productModalLabel">{{ product.title }}</h5>    
@@ -206,7 +206,7 @@
                                 <ul class="pagination">
                                     {% if products.has_previous %}
                                         <li class="page-item">
-                                            <a class="page-link" href="?page={{ products.previous_page_number }}" aria-label="Previous">
+                                            <a class="page-link" href="#" onclick="loadShopPage({{ products.previous_page_number }})" aria-label="Previous">
                                                 <span aria-hidden="true">&laquo;</span>
                                             </a>
                                         </li>
@@ -215,7 +215,7 @@
                                             <span class="page-link" aria-hidden="true">&laquo;</span>
                                         </li>
                                     {% endif %}
-                        
+                            
                                     {% for i in products.paginator.page_range %}
                                         {% if products.number == i %}
                                             <li class="page-item active" aria-current="page">
@@ -223,14 +223,14 @@
                                             </li>
                                         {% else %}
                                             <li class="page-item">
-                                                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                                <a class="page-link" href="#" onclick="loadShopPage({{ i }})">{{ i }}</a>
                                             </li>
                                         {% endif %}
                                     {% endfor %}
-                        
+                            
                                     {% if products.has_next %}
                                         <li class="page-item">
-                                            <a class="page-link" href="?page={{ products.next_page_number }}" aria-label="Next">
+                                            <a class="page-link" href="#" onclick="loadShopPage({{ products.next_page_number }})" aria-label="Next">
                                                 <span aria-hidden="true">&raquo;</span>
                                             </a>
                                         </li>
@@ -243,12 +243,13 @@
                             </nav>
                         </div>
 
+
                     </div>
                 </div>
 
 
                 <!-- правая часть -->
-                <div class="col-lg-12 col-md-12">
+                <div class="col-lg-3 col-md-12">
                     <div class="row px-2">
                         <!-- сайдбар -->
                         <div class="col-lg-12 sidebar my-4 mt-3">
@@ -360,7 +361,26 @@
             }
         }
     </script>
-
+    <script>
+        function loadShopPage(page) {
+            const url = new URL(window.location.href);
+            url.searchParams.set('page', page);
+            
+            fetch(url)
+                .then(response => response.text())
+                .then(html => {
+                    const doc = new DOMParser().parseFromString(html, 'text/html');
+            
+                    // Обновляем содержимое карточек товаров
+                    document.querySelector('.col-lg-12.col-md-12.mt-4 .row').innerHTML = doc.querySelector('.col-lg-12.col-md-12.mt-4 .row').innerHTML;
+    
+                    // Обновляем пагинацию для товаров
+                    document.querySelector('nav[aria-label="Page navigation example"] ul.pagination').innerHTML = doc.querySelector('nav[aria-label="Page navigation example"] ul.pagination').innerHTML;
+                })
+                .catch(error => console.error('Error loading shop page:', error));
+        }
+    </script>
+    
     
 
 </body>

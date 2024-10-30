@@ -223,14 +223,22 @@ a {
 .page-item .page-link {
 
     background-color: rgba(36, 36, 62, 0.5);
-    color: #ffec01;
-    border: 1px solid;
+    color: white;
+    border: 1px solid white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.page-item .page-link:hover {
+    background-color: rgba(36, 36, 62, 0.5);
+    color: white;
+    border: 1px solid #ffec01;
     font-size: 18px;
     font-weight: bold;
 }
 
 .page-item.active .page-link {
     background-color: rgba(36, 36, 62, 0.5);
-    border: 1px solid;
-    color: #8f3583;
+    border: 1px solid #ffec01;
+    color: #ffec01;
 }

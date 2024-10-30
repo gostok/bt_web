@@ -9,10 +9,20 @@
     margin: 10px;
 }
 
-.tattoo-category {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+
+
+#categoryDropdown {
+    background: rgba(36, 36, 62, 0.9);
+    border: 1px solid;
+    width: 176px;
+    color: #8f3583;
+}
+
+#categoryDropdown:hover {
+    background: rgba(36, 36, 62, 0.9);
+    border: 1px solid;
+    width: 176px;
+    color: #ffec00;
 }
 
 .dropdown-menu {
@@ -23,8 +33,21 @@
 }
 
 .dropdown-menu a {
+    color: #8f3583;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background: #8f3583;
+    background-color: #8f3583;
+}
+
+.dropdown-menu a:hover {
     color: #ffec00;
 }
+
+
+/* #8f3583;  #ffec00; */
+
 
 
 

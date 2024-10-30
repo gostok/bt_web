@@ -130,7 +130,7 @@
                                             <div class="text-center">
                                                 <a class="btn btn-primary" onclick="openPostModal('{{ post.title }}', '{{ post.image.url }}', '{{ post.content|escapejs }}', '{{ post.published_date }}')">Узнать больше</a>
                                             </div>
-                                            <p class="p-space">{{ post.published_date|date:"d.m.y | H:i" }}</p>
+                                            <p class="p-space" style="display: none;">{{ post.published_date|date:"d.m.y | H:i" }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -140,7 +140,7 @@
                         </div>
                         <!-- Модальное окно для поста -->
                         <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content modal-card-text modal-css">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="postModalLabel">Заголовок поста</h5>
@@ -167,7 +167,7 @@
                                 <ul class="pagination">
                                     {% if blog_posts.has_previous %}
                                         <li class="page-item">
-                                            <a class="page-link" href="?page={{ blog_posts.previous_page_number }}" aria-label="Previous">
+                                            <a class="page-link" href="#" onclick="loadBlogPage({{ blog_posts.previous_page_number }})" aria-label="Previous">
                                                 <span aria-hidden="true">&laquo;</span>
                                             </a>
                                         </li>
@@ -176,7 +176,7 @@
                                             <span class="page-link" aria-hidden="true">&laquo;</span>
                                         </li>
                                     {% endif %}
-                        
+
                                     {% for i in blog_posts.paginator.page_range %}
                                         {% if blog_posts.number == i %}
                                             <li class="page-item active" aria-current="page">
@@ -184,14 +184,14 @@
                                             </li>
                                         {% else %}
                                             <li class="page-item">
-                                                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                                <a class="page-link" href="#" onclick="loadBlogPage({{ i }})">{{ i }}</a>
                                             </li>
                                         {% endif %}
                                     {% endfor %}
-                        
+
                                     {% if blog_posts.has_next %}
                                         <li class="page-item">
-                                            <a class="page-link" href="?page={{ blog_posts.next_page_number }}" aria-label="Next">
+                                            <a class="page-link" href="#" onclick="loadBlogPage({{ blog_posts.next_page_number }})" aria-label="Next">
                                                 <span aria-hidden="true">&raquo;</span>
                                             </a>
                                         </li>
@@ -203,6 +203,7 @@
                                 </ul>
                             </nav>
                         </div>
+
 
                     </div>
                 </div>
@@ -316,7 +317,26 @@
         }
         
     </script>
-
+    <script>
+        function loadBlogPage(page) {
+            const url = new URL(window.location.href);
+            url.searchParams.set('page', page);
+            
+            fetch(url)
+                .then(response => response.text())
+                .then(html => {
+                    const doc = new DOMParser().parseFromString(html, 'text/html');
+            
+                    // Обновляем содержимое блога
+                    document.querySelector('.col-lg-12.col-md-12.mt-4 .row').innerHTML = doc.querySelector('.col-lg-12.col-md-12.mt-4 .row').innerHTML;
+    
+                    // Обновляем пагинацию для блога
+                    document.querySelector('nav[aria-label="Page navigation example"] ul.pagination').innerHTML = doc.querySelector('nav[aria-label="Page navigation example"] ul.pagination').innerHTML;
+                })
+                .catch(error => console.error('Error loading blog page:', error));
+        }
+    </script>
+    
 
 
 </body>

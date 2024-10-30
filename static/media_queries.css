@@ -17,6 +17,8 @@
     }
 
 
+
+
 }
 
 @media (max-width: 768px) {
@@ -46,16 +48,6 @@
     }
 
 
-    .btn-galelery {
-        flex-direction: column;
-        align-items: center;
-
-    }
-
-    .tattoo-category {
-        flex-direction: column;
-        align-items: center;
-    }
 
 
 

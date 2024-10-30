@@ -85,14 +85,14 @@
                     
                     <div class="row">
                         <div class="col text-center btn-galelery">
-                            <div class="d-flex justify-content-center">
+                            <div class="d-flex flex-column flex-md-row justify-content-center">
                                 <button type="button" class="btn btn-primary btn-lg flex-fill mx-1" onclick="showTattooGallery()" id="tattoo-button">Тату Галерея</button>
                                 <button type="button" class="btn btn-secondary btn-lg flex-fill mx-1" onclick="showMasterGallery()" id="master-button">Мастера</button>
                                 {% if tattoos %}
                                 <!-- Категории -->
                                 <div class="tattoo-category">
                                     <div class="dropdown d-inline">
-                                        <button class="btn btn-primary btn-lg dropdown-toggle flex-fill mx-1" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <button class="btn btn-lg dropdown-toggle flex-fill mx-1" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                             Категории
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
@@ -148,8 +148,7 @@
                                                 <div class="card-body mt-4">
                                                     <h5 class="card-title">{{ tattoo.title }}</h5>
                                                     <p class="card-text">{{ tattoo.description|truncatechars:24 }}</p>
-                                                    <br>
-                                                    <p class="p-space">{{ tattoo.publication_date|date:"d.m.y | H:i" }}</p>
+                                                    
                                                     <div class="text-center">
                                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tattooModal{{ tattoo.id }}">
                                                             Узнать больше
@@ -160,7 +159,7 @@
                                         </div>
                                         <!-- Модальное окно для татуировки -->
                                         <div class="modal fade mt-4 modal-bg-bl-front" id="tattooModal{{ tattoo.id }}" tabindex="-1" role="dialog" aria-labelledby="tattooModalLabel{{ tattoo.id }}" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content modal-card-text modal-css">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="tattooModalLabel{{ tattoo.id }}">{{ tattoo.title }}</h5>
@@ -241,11 +240,10 @@
                                                 <div class="card-body mt-4">
                                                     <h5 class="card-title">{{ master.name }}</h5>
                                                     <p class="card-text">{{ master.description|truncatechars:24 }}</p>
-                                                    <br>
-                                                    <p class="p-space">{{ master.publication_date|date:"d.m.y | H:i" }}</p>
+                                                    
                                                     
                                                     <div class="text-center">
-                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tattooModal{{ tattoo.id }}">
+                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#masterModal{{ master.id }}">
                                                             Узнать больше
                                                         </button>
                                                     </div>
@@ -256,7 +254,7 @@
 
                                         <!-- Модальное окно для мастера -->
                                         <div class="modal fade mt-4 modal-bg-bl-front" id="masterModal{{ master.id }}" tabindex="-1" role="dialog" aria-labelledby="masterModalLabel{{ master.id }}" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content modal-card-text modal-css">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="masterModalLabel{{ master.id }}">{{ master.name }}</h5>
