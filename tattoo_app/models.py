@@ -18,11 +18,6 @@ class TattooSidebarNews(SidebarNews):
     pass
 
 
-def validate_image_gallery(image):
-    if image.width != 500 or image.height != 600:
-        raise ValidationError("Разрешение изображения должно быть 500х600 пикселей.")
-
-
 class Master(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
@@ -37,9 +32,7 @@ class Master(models.Model):
 
 class MasterImage(models.Model):
     master = models.ForeignKey(Master, related_name="images", on_delete=models.CASCADE)
-    image = models.ImageField(
-        upload_to="master_images/", validators=[validate_image_gallery]
-    )
+    image = models.ImageField(upload_to="master_images/")
 
 
 class Tattoo(models.Model):
@@ -59,6 +52,4 @@ class Tattoo(models.Model):
 
 class TattooImage(models.Model):
     tattoo = models.ForeignKey(Tattoo, related_name="images", on_delete=models.CASCADE)
-    image = models.ImageField(
-        upload_to="tattoo_images/", validators=[validate_image_gallery]
-    )
+    image = models.ImageField(upload_to="tattoo_images/")

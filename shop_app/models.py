@@ -51,18 +51,11 @@ class Product(models.Model):
         return self.price
 
 
-def validate_image_product(image):
-    if image.width != 500 or image.height != 600:
-        raise ValidationError("Разрешение изображения должно быть 500х600 пикселей.")
-
-
 class ProductImage(models.Model):
     product = models.ForeignKey(
         Product, related_name="images", on_delete=models.CASCADE
     )
-    image = models.ImageField(
-        upload_to="product_images/", validators=[validate_image_product]
-    )
+    image = models.ImageField(upload_to="product_images/")
 
     def __str__(self) -> str:
         return f"Image for {self.product.title}"

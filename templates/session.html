@@ -138,57 +138,55 @@
                             </div>
 
                             <!-- Модальное окно для подтверждения записи -->
-                            <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content bg-dark">
+                            <div class="modal fade mt-4 modal-bg-bl-front" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" style="width: 380px; height: 350px;">
+                                    <div class="modal-content modal-card-text modal-css" style="width: 380px; height: 350px;">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="confirmationModalLabel" style="color: rgb(201, 162, 115);">Подтверждение записи</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                                            <h5 class="modal-title text-center" id="confirmationModalLabel" style="color: #ffec01;">Подтверждение записи</h5>
+                                            <button type="button" class="btn-close custom-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body">
-                                            <p style="color: white;"><span class="p-front">Выбранная дата:</span> <span id="selectedDate"></span></p>
-                                            <p style="color: white;"><span class="p-front">Выбранное время:</span> <span id="selectedTime"></span></p>
-                                            <p style="color: white;"><span class="p-front">Ваше имя:</span> <span id="selectedName"></span></p>
-                                            <p style="color: white;"><span class="p-front">Контактная информация:</span> <span id="selectedContact"></span></p>
-                                            <div style="color: rgb(201, 162, 115);">
+                                        <div class="modal-body" >
+                                            
+                                            <p style="color: white; text-align: left;"><span class="p-front">Выбранная дата:</span> <span id="selectedDate"></span></p>
+                                            <p style="color: white; text-align: left;"><span class="p-front">Выбранное время:</span> <span id="selectedTime"></span></p>
+                                            <p style="color: white; text-align: left;"><span class="p-front">Ваше имя:</span> <span id="selectedName"></span></p>
+                                            <p style="color: white; text-align: left;"><span class="p-front">Контактная информация:</span> <span id="selectedContact"></span></p>
+                                            <div style="color: rgb(135,224,239); text-align: left;">
                                                 <input type="checkbox" id="ageConfirmation"> Мне есть 18 лет
                                             </div>
-                                            <div style="color: rgb(201, 162, 115);">
+                                            <div style="color: rgb(135,224,239); text-align: left;">
                                                 <input type="checkbox" id="dataVerification"> Я подтверждаю, что данные верны
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                                            <button type="button" class="btn btn-success" id="confirmButton">Подтвердить</button>
+                                            
+                                            <button type="button" class="btn btn-secondary" id="confirmButton">Подтвердить</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Модальное окно для успешной отправки -->
-                            <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel"
+                            <div class="modal fade mt-4 modal-bg-bl-front" id="successModal" tabindex="-1" aria-labelledby="successModalLabel"
                                 aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content bg-dark">
+                                <div class="modal-dialog modal-dialog-centered" style="width: 380px; height: 250px;">
+                                    <div class="modal-content modal-card-text modal-css" style="width: 380px; height: 250px;">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="successModalLabel" style="color: rgb(201, 162, 115);">
+                                            <h5 class="modal-title text-center" id="successModalLabel" style="color: #ffec00;">
                                                 Спасибо!</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Закрыть"></button>
+                                            <button type="button" class="btn-close custom-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <p style="color: white;">С вами скоро свяжется менеджер.</p>
-                                            <p style="color: white;">Связь с нами:</p>
+                                            
+                                            <p style="color: white; text-align: left;">С вами скоро свяжется менеджер.</p>
+                                            <p style="color: white; text-align: left;">Связь с нами:</p>
                                             <ul>
-                                                <li><a href="https://www.instagram.com/bjus.tattoo/profilecard/?igsh=MXB4Y25wY2tkeXZhdQ==" target="_blank">Наш Instagram</a></li>
-                                                <li><a href="https://t.me/bjus_tattoo" target="_blank">Наш Telegram-канал</a></li>
-                                                <li><a href="https://vk.com/bjus.tattoo" target="_blank">Наша VK-группа</a></li>
+                                                <li><a style="color: rgb(135,224,239); text-align: left;" href="https://www.instagram.com/bjus.tattoo/profilecard/?igsh=MXB4Y25wY2tkeXZhdQ==" target="_blank">Наш Instagram</a></li>
+                                                <li><a style="color: rgb(135,224,239); text-align: left;" href="https://t.me/bjus_tattoo" target="_blank">Наш Telegram-канал</a></li>
+                                                <li><a style="color: rgb(135,224,239); text-align: left;" href="https://vk.com/bjus.tattoo" target="_blank">Наша VK-группа</a></li>
                                             </ul>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary"
-                                                data-bs-dismiss="modal">Закрыть</button>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
