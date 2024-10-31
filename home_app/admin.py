@@ -7,16 +7,6 @@ class BlogPostAdmin(admin.ModelAdmin):
     list_display = ("title", "published_date")
     prepopulated_fields = {"short_description": ("title",)}
 
-    def get_form(self, request, obj=None, **kwargs):
-        form = super().get_form(request, obj, **kwargs)
-        # Добавляем подсказку в форму
-        form.base_fields["image"].help_text = format_html(
-            '<div style="color: red; font-weight: bold;">'
-            "Пожалуйста, загрузите изображение размером 500x500 пикселей."
-            "</div>"
-        )
-        return form
-
 
 class SidebarNewsAdmin(admin.ModelAdmin):
     list_display = ("title",)

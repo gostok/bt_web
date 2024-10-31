@@ -121,6 +121,7 @@
                                             <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
                                         </div>
                                         {% endif %}
+                                        <br>
                                         <div class="card-body">
                                             <h5 class="card-title">{{ post.title }}</h5>
                                             <p class="card-text">
@@ -131,7 +132,10 @@
                                                 <a class="btn btn-primary" onclick="openPostModal('{{ post.title }}', '{{ post.image.url }}', '{{ post.content|escapejs }}', '{{ post.published_date }}')">Узнать больше</a>
                                             </div>
                                             <p class="p-space" style="display: none;">{{ post.published_date|date:"d.m.y | H:i" }}</p>
+                                            <br>
+                                            
                                         </div>
+                                        
                                     </div>
                                 </div>
                                 
