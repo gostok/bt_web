@@ -4,12 +4,12 @@ from .models import *
 
 class TattooImageInline(admin.TabularInline):
     model = TattooImage
-    extra = 12
+    extra = 1
 
 
 class MasterImageInline(admin.TabularInline):
     model = MasterImage
-    extra = 12
+    extra = 1
 
 
 class TattooAdmin(admin.ModelAdmin):

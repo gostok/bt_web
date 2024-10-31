@@ -80,140 +80,143 @@
                 <div class="col-lg-1"></div>
 
                 <!-- середина -->
-
-                <div class="col-lg-8 col-md-12 contacts-conteiner-back">
-                    
-                    <!-- Запись на сеанс -->
+                <div class="col-lg-8 col-md-12">
                     <div class="row">
-                        <h2 class="mt-4 text-center" style="color: #ffec01;">Запись на Сеанс</h2>
-                        <h5 style="color: white; margin: 1em;">
-                            Для того, чтобы записаться на сеанс или консультацию используй форму ниже. 
-                            <br><br>
-                            После того, как ты заполнишь форму с тобой свяжется менеджер. 
-                            <br>
-                            Убедись, что твои настройки приватности позволят менеджеру тебе написать. 
-
-                        </h5>
-                    </div>
-
-                    <!-- Форма записи на сеанс -->
-                    
-                    
-                    <div class="row mt-4">
-                        <form method="POST" id="session-form">
-                            {% csrf_token %}
-                            <div class="mb-3">
-                                <label for="date-display"><span style="color: #ffec01;">Дата:</span></label>
-                                <select id="date-display" name="date" class="form-control" required>
-                                    <option value="">Выберите дату</option>
-                                    {% for date in available_dates %}
-                                    <option value="{{ date.date|date:"Y-m-d" }}">{{ date.date }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
+                        <div class="col-lg-8 col-md-12 contacts-conteiner-back mt-4">
                             
-                            <div class="mb-3">
-                                <label for="time-display"><span style="color: #ffec01;">Время:</span></label>
-                                <select id="time-display" name="time" class="form-control" required>
-                                    <option value="">Выберите время</option>
-                                </select>
-                            </div>
-                
-                            <div class="mb-3">
-                                <label for="name"><span style="color: #ffec01;">Имя:</span></label>
-                                <input type="text" id="name" name="name" class="form-control" required>
-                            </div>
-                
-                            <div class="mb-3">
-                                <label for="contact_info"><span style="color: #ffec01;">Контакт:</span></label>
-                                <input type="text" id="contact_info" name="contact_info" class="form-control" required>
-                            </div>
-                
-                            <div style="text-align: center;">
-                                <button type="submit" class="btn btn-primary">Записаться</button>
-                            </div>
-                        </form>
-                        <div id="response" class="mt-3"></div>
-                    </div>
+                            <!-- Запись на сеанс -->
+                            <div class="row">
+                                <h2 class="mt-4 text-center" style="color: #ffec01;">Запись на Сеанс</h2>
+                                <h5 style="color: white; margin: 1em;">
+                                    Для того, чтобы записаться на сеанс или консультацию используй форму ниже. 
+                                    <br><br>
+                                    После того, как ты заполнишь форму с тобой свяжется менеджер. 
+                                    <br>
+                                    Убедись, что твои настройки приватности позволят менеджеру тебе написать. 
 
-                    <!-- Модальное окно для подтверждения записи -->
-                    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content bg-dark">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="confirmationModalLabel" style="color: rgb(201, 162, 115);">Подтверждение записи</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p style="color: white;"><span class="p-front">Выбранная дата:</span> <span id="selectedDate"></span></p>
-                                    <p style="color: white;"><span class="p-front">Выбранное время:</span> <span id="selectedTime"></span></p>
-                                    <p style="color: white;"><span class="p-front">Ваше имя:</span> <span id="selectedName"></span></p>
-                                    <p style="color: white;"><span class="p-front">Контактная информация:</span> <span id="selectedContact"></span></p>
-                                    <div style="color: rgb(201, 162, 115);">
-                                        <input type="checkbox" id="ageConfirmation"> Мне есть 18 лет
+                                </h5>
+                            </div>
+
+                            <!-- Форма записи на сеанс -->
+                            
+                            
+                            <div class="row mt-4">
+                                <form method="POST" id="session-form">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <label for="date-display"><span style="color: #ffec01;">Дата:</span></label>
+                                        <select id="date-display" name="date" class="form-control" required>
+                                            <option value="">Выберите дату</option>
+                                            {% for date in available_dates %}
+                                            <option value="{{ date.date|date:"Y-m-d" }}">{{ date.date }}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
-                                    <div style="color: rgb(201, 162, 115);">
-                                        <input type="checkbox" id="dataVerification"> Я подтверждаю, что данные верны
+                                    
+                                    <div class="mb-3">
+                                        <label for="time-display"><span style="color: #ffec01;">Время:</span></label>
+                                        <select id="time-display" name="time" class="form-control" required>
+                                            <option value="">Выберите время</option>
+                                        </select>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                                    <button type="button" class="btn btn-success" id="confirmButton">Подтвердить</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Модальное окно для успешной отправки -->
-                    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content bg-dark">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="successModalLabel" style="color: rgb(201, 162, 115);">
-                                        Спасибо!</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Закрыть"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p style="color: white;">С вами скоро свяжется менеджер.</p>
-                                    <p style="color: white;">Связь с нами:</p>
-                                    <ul>
-                                        <li><a href="https://www.instagram.com/bjus.tattoo/profilecard/?igsh=MXB4Y25wY2tkeXZhdQ==" target="_blank">Наш Instagram</a></li>
-                                        <li><a href="https://t.me/bjus_tattoo" target="_blank">Наш Telegram-канал</a></li>
-                                        <li><a href="https://vk.com/bjus.tattoo" target="_blank">Наша VK-группа</a></li>
-                                    </ul>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary"
-                                        data-bs-dismiss="modal">Закрыть</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Запись на сеанс -->
-                    <div class="row">
                         
-                        <h6 style="color: white;  margin: 1em;">
-                            Если ты хочешь сам связаться с менеджером, чтобы обсудить идею тату - пиши Никите:
+                                    <div class="mb-3">
+                                        <label for="name"><span style="color: #ffec01;">Имя:</span></label>
+                                        <input type="text" id="name" name="name" class="form-control" required>
+                                    </div>
+                        
+                                    <div class="mb-3">
+                                        <label for="contact_info"><span style="color: #ffec01;">Контакт:</span></label>
+                                        <input type="text" id="contact_info" name="contact_info" class="form-control" required>
+                                    </div>
+                        
+                                    <div style="text-align: center;">
+                                        <button type="submit" class="btn btn-primary">Записаться</button>
+                                    </div>
+                                </form>
+                                <div id="response" class="mt-3"></div>
+                            </div>
+
+                            <!-- Модальное окно для подтверждения записи -->
+                            <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content bg-dark">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="confirmationModalLabel" style="color: rgb(201, 162, 115);">Подтверждение записи</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p style="color: white;"><span class="p-front">Выбранная дата:</span> <span id="selectedDate"></span></p>
+                                            <p style="color: white;"><span class="p-front">Выбранное время:</span> <span id="selectedTime"></span></p>
+                                            <p style="color: white;"><span class="p-front">Ваше имя:</span> <span id="selectedName"></span></p>
+                                            <p style="color: white;"><span class="p-front">Контактная информация:</span> <span id="selectedContact"></span></p>
+                                            <div style="color: rgb(201, 162, 115);">
+                                                <input type="checkbox" id="ageConfirmation"> Мне есть 18 лет
+                                            </div>
+                                            <div style="color: rgb(201, 162, 115);">
+                                                <input type="checkbox" id="dataVerification"> Я подтверждаю, что данные верны
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                                            <button type="button" class="btn btn-success" id="confirmButton">Подтвердить</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Модальное окно для успешной отправки -->
+                            <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content bg-dark">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="successModalLabel" style="color: rgb(201, 162, 115);">
+                                                Спасибо!</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Закрыть"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p style="color: white;">С вами скоро свяжется менеджер.</p>
+                                            <p style="color: white;">Связь с нами:</p>
+                                            <ul>
+                                                <li><a href="https://www.instagram.com/bjus.tattoo/profilecard/?igsh=MXB4Y25wY2tkeXZhdQ==" target="_blank">Наш Instagram</a></li>
+                                                <li><a href="https://t.me/bjus_tattoo" target="_blank">Наш Telegram-канал</a></li>
+                                                <li><a href="https://vk.com/bjus.tattoo" target="_blank">Наша VK-группа</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary"
+                                                data-bs-dismiss="modal">Закрыть</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Запись на сеанс -->
+                            <div class="row">
+                                
+                                <h6 style="color: white;  margin: 1em;">
+                                    Если ты хочешь сам связаться с менеджером, чтобы обсудить идею тату - пиши Никите:
+                                    
+                                        <a href="https://wa.me/79114969561">
+                                            <img class="footer-img-s" 
+                                                src="{% static 'images/img_soc/wa.png' %}" alt="WhatsApp">
+                                        </a>
+                                        <a href="https://t.me/natureisdead">
+                                            <img class="footer-img-s" 
+                                                src="{% static 'images/img_soc/tg.png' %}" alt="Telegram">
+                                        </a>
+                                        <a href="https://vk.me/natureisdead">
+                                            <img class="footer-img-s"  src="{% static 'images/img_soc/vk.png' %}"
+                                                alt="vk">
+                                        </a>
+                                    
+                                </h6>
+                            </div>
                             
-                                <a href="https://wa.me/79114969561">
-                                    <img class="footer-img-s" 
-                                        src="{% static 'images/img_soc/wa.png' %}" alt="WhatsApp">
-                                </a>
-                                <a href="https://t.me/natureisdead">
-                                    <img class="footer-img-s" 
-                                        src="{% static 'images/img_soc/tg.png' %}" alt="Telegram">
-                                </a>
-                                <a href="https://vk.me/natureisdead">
-                                    <img class="footer-img-s"  src="{% static 'images/img_soc/vk.png' %}"
-                                        alt="vk">
-                                </a>
-                            
-                        </h6>
+                        </div>
                     </div>
-                    
                 </div>
 
                 <!-- правая часть -->
@@ -308,6 +311,15 @@
                         });
                     }
                 });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleButton = document.getElementById('navtoggler-b');
+    
+            toggleButton.addEventListener('click', function () {
+                toggleButton.classList.toggle('active'); // Переключаем класс 'active'
             });
         });
     </script>

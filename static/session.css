@@ -4,9 +4,9 @@
 }
 
 .contacts-conteiner-back {
-    border: 2px solid;
+    border: 0 solid;
+    width: 100%;
     border-radius: 5px;
-    padding-left: 2em;
     background-color: rgba(36, 36, 62, 0.5);
 }
 

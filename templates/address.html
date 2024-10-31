@@ -28,8 +28,8 @@
                 <a class="navbar-brand n-b active" href="/">БЬЮСЬ ТАТУ</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="navtoggler-b">
-                    <span class="navbar-toggler-icon" id="navtoggler-b-i"></span>
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" id="navtoggler-b">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -80,52 +80,55 @@
                 <div class="col-lg-1"></div>
 
                 <!-- середина -->
-
-                <div class="col-lg-8 col-md-12 contacts-conteiner-back">
-                    <div class="row mb-2">
-                        <div class="col-lg-8 col-md-8 contacts-conteiner">
-                            <h2 class="text-center" style="color: #ffec01;">Наш адрес</h2>
-                            <h4 style="margin: 1em; color: white;">
-                                г. Калининград, ул. Карла Маркса, д. 39 со стороны дороги.<br>  
-                                <h6 style="margin: 1em; color: white; margin-left: 3em;">До нас идут трамвай №5, маршрутка №71.</h6>
-                            </h4>
-                        </div>
-                    </div>
-                    <div class="mb-4 text-center">
-                        <button id="toggleMap" class="toggle-map-button">Показать карту</button>
-                        <iframe
-                            src="https://yandex.ru/map-widget/v1/?um=constructor%3A13fb70a949c3a5af95049543916c05ea9872ef2360b8d81fe09aea29eda7318c&amp;source=constructor"
-                            frameborder="0" allowfullscreen="true" class="map-container"></iframe>
-                        
-                    </div>
+                <div class="col-lg-8 col-md-12">
                     <div class="row">
-                        <div class="col-lg-8 col-md-8 contacts-conteiner">
-                            <h2 class="text-center" style="color: #ffec01;">Наши соц-сети</h2>
-                    
-                            <div class="d-flex flex-wrap justify-content-center">
-                                <a href="https://www.instagram.com/bjus.tattoo/profilecard/?igsh=MXB4Y25wY2tkeXZhdQ==" class="icon">
-                                    <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/inst.png' %}" alt="Instagram">
-                                </a>
-                                <a href="https://t.me/bjus_tattoo" class="icon">
-                                    <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/tg.png' %}" alt="Telegram">
-                                </a>
-                                <a href="https://vk.com/bjus.tattoo" class="icon">
-                                    <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/vk.png' %}" alt="VK">
-                                </a>
-                                <a href="https://wa.me/79114969561" class="icon">
-                                    <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/wa.png' %}" alt="WhatsApp">
-                                </a>
-                                <a href="https://yandex.com/maps/org/byus/3050072921?si=jk926yjm2rawbbnrqcgmap72a4" class="icon">
-                                    <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/pngwing.com.png' %}" alt="Яндекс Карта">
-                                </a>
-                                <a href="https://2gis.ru/kaliningrad/geo/70000001089473707" class="icon">
-                                    <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/logo-2gis.png' %}" alt="2Gis">
-                                </a>
+                        <div class="col-lg-8 col-md-12 contacts-conteiner-back mt-4">
+                            <div class="row mb-2">
+                                <div class="col-lg-8 col-md-8 contacts-conteiner">
+                                    <h2 class="text-center" style="color: #ffec01; margin-top: 1em;">Наш адрес</h2>
+                                    <h4 style="margin: 1em; color: white;">
+                                        г. Калининград, ул. Карла Маркса, д. 39 со стороны дороги.<br>  
+                                        <h4 style="margin: 1em; color: white;">До нас идут трамвай №5, маршрутка №71.</h4>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="mb-4 text-center">  
+                                <button id="toggleMap" class="toggle-map-button">Показать карту</button>
+                                <iframe
+                                    src="https://yandex.ru/map-widget/v1/?um=constructor%3A13fb70a949c3a5af95049543916c05ea9872ef2360b8d81fe09aea29eda7318c&amp;source=constructor"
+                                    frameborder="0" allowfullscreen="true" class="map-container"></iframe>
                                 
                             </div>
+                            <div class="row">
+                                <div class="col-lg-8 col-md-8 contacts-conteiner">
+                                    <h2 class="text-center" style="color: #ffec01; margin-top: 1em;">Наши соц-сети</h2>
                             
+                                    <div class="d-flex flex-wrap justify-content-center">
+                                        <a href="https://www.instagram.com/bjus.tattoo/profilecard/?igsh=MXB4Y25wY2tkeXZhdQ==" class="icon">
+                                            <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/inst.png' %}" alt="Instagram">
+                                        </a>
+                                        <a href="https://t.me/bjus_tattoo" class="icon">
+                                            <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/tg.png' %}" alt="Telegram">
+                                        </a>
+                                        <a href="https://vk.com/bjus.tattoo" class="icon">
+                                            <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/vk.png' %}" alt="VK">
+                                        </a>
+                                        <a href="https://wa.me/79114969561" class="icon">
+                                            <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/wa.png' %}" alt="WhatsApp">
+                                        </a>
+                                        <a href="https://yandex.com/maps/org/byus/3050072921?si=jk926yjm2rawbbnrqcgmap72a4" class="icon">
+                                            <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/pngwing.com.png' %}" alt="Яндекс Карта">
+                                        </a>
+                                        <a href="https://2gis.ru/kaliningrad/geo/70000001089473707" class="icon">
+                                            <img style="width: 35px; margin: 0.5em;" src="{% static 'images/img_soc/logo-2gis.png' %}" alt="2Gis">
+                                        </a>
+                                        
+                                    </div>
+                                    
+                                </div>
+                                <p style="font-size: 12px; text-align: right;">* Meta Platforms Instagram признана экстремистской организацией и запрещена на территории РФ</p>
+                            </div>
                         </div>
-                        <p style="font-size: 12px; text-align: right;">* Meta Platforms Instagram признана экстремистской организацией и запрещена на территории РФ</p>
                     </div>
                 </div>
 
@@ -133,7 +136,7 @@
                 <div class="col-lg-3 col-md-12">
                     <div class="row px-2">
                         <!-- сайдбар -->
-                        <div class="col-lg-12 sidebar my-4 mt-0">
+                        <div class="col-lg-12 sidebar my-4">
                             {% for news in sidebar_news %}
                             <div class="card my-4 mt-0">
                                 <div class="card-body">
@@ -210,7 +213,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
- 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleButton = document.getElementById('navtoggler-b');
+    
+            toggleButton.addEventListener('click', function () {
+                toggleButton.classList.toggle('active'); // Переключаем класс 'active'
+            });
+        });
+    </script>
     <script>
         document.getElementById('toggleMap').addEventListener('click', function() {
             const map = document.querySelector('.map-container');
@@ -226,6 +237,8 @@
         
         
     </script>
+    
+    
         
 </body>
 

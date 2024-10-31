@@ -1,5 +1,6 @@
 .contacts-conteiner-back {
-    border: 2px solid;
+    border: 0 solid;
+    width: 100%;
     border-radius: 5px;
     background-color: rgba(36, 36, 62, 0.5);
 }
@@ -10,30 +11,34 @@
     z-index: 100;
     background: rgba(36, 36, 62);
     border: 1px solid;
-    color: #8f3583;
+    color: #ffec00;
+    border-radius: 5px;
 }
 
 #toggleMap:hover {
     background: rgba(36, 36, 62);
     border: 1px solid;
     color: #ffec00;
+    border-radius: 5px;
 }
 
 #toggleMap.show {
     background: rgba(36, 36, 62);
     border: 1px solid;
     color: #ffec00;
+    border-radius: 5px;
 }
 
 
 
 
 .map-container {
-    border: 2px solid;
+    border: 0 solid;
     border-radius: 5px;
     width: 802px;
     height: 531px;
     padding: 0;
+    margin-right: 10em;
 
 }
 

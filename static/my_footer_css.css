@@ -32,16 +32,15 @@
 
 #navtoggler-b {
   background: #ffec00;
+  border: none;
 }
 
-#navtoggler-b:hover {
+#navtoggler-b.active {
   background: #8f3583;
-  border: 1px solid #ffec00;
+
 }
 
-#navtoggler-b:focus {
-  box-shadow: none;
-}
+
 
 
 .navbar-brand.n-b {
@@ -72,7 +71,10 @@
 
 /* sidebar */
 
+
+
 .sidebar .card {
+  border: 0px solid;
   background-color: rgba(36, 36, 62, 0.5);
   position: relative;
   height: auto;

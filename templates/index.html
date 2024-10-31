@@ -86,33 +86,33 @@
                 <div class="col-lg-8 col-md-12">
                     <div class="row">
                         <!-- карусель -->
-            
-                        <div class="row">
-                            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner" style="height: 400px; width: 1768px;">
-                                    {% for image in carousel_images %}
-                                    <div class="carousel-item {% if forloop.first %}active{% endif %}" style="height: 100%; width:100%;">
-                                        <img src="{{ image.image.url }}" class="d-block img-fluid" alt="{{ image.alt_text }}" 
-                                            style="height: 100%; width: 100%;">
+                        <div class="col-lg-12 col-md-12 mt-4">
+                            <div class="row">
+                                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner" style="height: 400px;">
+                                        {% for image in carousel_images %}
+                                        <div class="carousel-item {% if forloop.first %}active{% endif %}" style="height: 100%; width:100%;">
+                                            <img src="{{ image.image.url }}" class="d-block img-fluid" alt="{{ image.alt_text }}" 
+                                                style="height: 100%; width: 100%;">
+                                        </div>
+                                        {% endfor %}
                                     </div>
-                                    {% endfor %}
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
                                 </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
                             </div>
                         </div>
-
 
                         <!-- Главный новостной блог -->
 
                         <div class="col-lg-12 col-md-12 mt-4">
-                            <div class="row">
+                            <div class="row pag-card">
                                 {% for post in blog_posts %}
                                 <div class="col-lg-4 col-md-6 mb-3 col-sm-12 mt-4 blog-card">
                                     <div class="card card-css">
@@ -163,6 +163,7 @@
 
                         <!-- Пагинация -->
                         <div class="row">
+                            {% if blog_posts.paginator.num_pages > 1 %}
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     {% if blog_posts.has_previous %}
@@ -202,7 +203,10 @@
                                     {% endif %}
                                 </ul>
                             </nav>
+                            {% endif %}
                         </div>
+
+
 
 
                     </div>
@@ -213,7 +217,7 @@
                 <div class="col-lg-3 col-md-12">
                     <div class="row px-2">
                         <!-- сайдбар -->
-                        <div class="col-lg-12 sidebar my-4 mt-0">
+                        <div class="col-lg-12 sidebar my-4 ">
                             {% for news in sidebar_news %}
                             <div class="card my-4 mt-0">
                                 <div class="card-body">
@@ -290,6 +294,15 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous">
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleButton = document.getElementById('navtoggler-b');
+    
+            toggleButton.addEventListener('click', function () {
+                toggleButton.classList.toggle('active'); // Переключаем класс 'active'
+            });
+        });
+    </script>
 
     <script>
         window.addEventListener('beforeunload', function() {
@@ -320,25 +333,47 @@
         }
         
     </script>
+  
     <script>
         function loadBlogPage(page) {
             const url = new URL(window.location.href);
-            url.searchParams.set('page', page);
-            
+            url.searchParams.set('page', page); // Обновляем номер страницы в URL
+        
             fetch(url)
-                .then(response => response.text())
-                .then(html => {
-                    const doc = new DOMParser().parseFromString(html, 'text/html');
-            
-                    // Обновляем содержимое блога
-                    document.querySelector('.col-lg-12.col-md-12.mt-4 .row').innerHTML = doc.querySelector('.col-lg-12.col-md-12.mt-4 .row').innerHTML;
-    
-                    // Обновляем пагинацию для блога
-                    document.querySelector('nav[aria-label="Page navigation example"] ul.pagination').innerHTML = doc.querySelector('nav[aria-label="Page navigation example"] ul.pagination').innerHTML;
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Ошибка сети: ' + response.statusText);
+                    }
+                    return response.text();
                 })
-                .catch(error => console.error('Error loading blog page:', error));
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+        
+                    // Обновляем карточки постов
+                    const newPosts = doc.querySelector('.pag-card'); // Получаем новые посты
+                    const currentPostsContainer = document.querySelector('.pag-card');
+        
+                    if (newPosts) {
+                        currentPostsContainer.innerHTML = newPosts.innerHTML; // Обновляем карточки постов
+                    }
+        
+                    // Обновляем пагинацию
+                    const newPagination = doc.querySelector('nav[aria-label="Page navigation example"] ul.pagination');
+                    const currentPaginationContainer = document.querySelector('nav[aria-label="Page navigation example"] ul.pagination');
+        
+                    if (newPagination) {
+                        currentPaginationContainer.innerHTML = newPagination.innerHTML; // Обновляем пагинацию
+                    }
+        
+                    // Обновление URL
+                    history.pushState(null, '', url); // Обновляем URL
+                })
+                .catch(error => console.error('Ошибка при загрузке страницы блога:', error));
         }
+        
     </script>
+    
     
 
 

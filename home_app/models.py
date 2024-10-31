@@ -2,8 +2,15 @@ from django.db import models
 from django.core.exceptions import ValidationError
 
 
+def validate_image_blog_carousel(image):
+    if image.width != 1700 or image.height != 400:
+        raise ValidationError("Разрешение изображения должно быть 500x500 пикселей.")
+
+
 class CarouselImage(models.Model):
-    image = models.ImageField(upload_to="carousel_images/")
+    image = models.ImageField(
+        upload_to="carousel_images/", validators=[validate_image_blog_carousel]
+    )
     alt_text = models.CharField(max_length=100)
 
     def __str__(self):
@@ -12,9 +19,7 @@ class CarouselImage(models.Model):
 
 def validate_image_blog(image):
     if image.width != 500 or image.height != 500:
-        raise ValidationError(
-            "Разрешение изображения должно быть не меньше 2560х1440 пикселей."
-        )
+        raise ValidationError("Разрешение изображения должно быть 500x500 пикселей.")
 
 
 class BlogPost(models.Model):

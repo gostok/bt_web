@@ -1,21 +1,21 @@
 from django.contrib import admin
+from django.utils.html import format_html
 from .models import *
 
 
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
-    extra = 8
+    extra = 1
 
 
 class ProductAdmin(admin.ModelAdmin):
-    inlines = [ProductImageInline]
     list_display = ["title", "price", "discount"]
     fields = ["title", "price", "discount", "description", "seller"]
 
 
 class ContactInline(admin.TabularInline):
     model = Contact
-    extra = 6
+    extra = 1
 
 
 @admin.register(Seller)

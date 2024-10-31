@@ -15,12 +15,12 @@ def tattoo(request):
     else:
         tattoo_list = Tattoo.objects.filter(category_id=categories_id)
 
-    tattoo_paginator = Paginator(tattoo_list, 6)
+    tattoo_paginator = Paginator(tattoo_list, 3)
     tattoo_page_number = request.GET.get("page")
     tattoos = tattoo_paginator.get_page(tattoo_page_number)
 
     master_list = Master.objects.all()
-    master_paginator = Paginator(master_list, 6)
+    master_paginator = Paginator(master_list, 3)
     master_page_number = request.GET.get("master_page")
     masters = master_paginator.get_page(master_page_number)
 

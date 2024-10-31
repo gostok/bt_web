@@ -136,6 +136,7 @@
                                                         </div>
                                                         {% endfor %}
                                                     </div>
+                                                    {% if tattoo.images.count > 1 %}  <!-- Проверка на количество изображений -->
                                                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselTattoo{{ tattoo.id }}" data-bs-slide="prev">
                                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                         <span class="visually-hidden">Previous</span>
@@ -144,6 +145,7 @@
                                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                         <span class="visually-hidden">Next</span>
                                                     </button>
+                                                    {% endif %}
                                                 </div>
                                                 <div class="card-body mt-4">
                                                     <h5 class="card-title">{{ tattoo.title }}</h5>
@@ -182,6 +184,7 @@
                                                                         </div>
                                                                         {% endfor %}
                                                                     </div>
+                                                                    {% if tattoo.images.count > 1 %}  <!-- Проверка на количество изображений -->
                                                                     <button class="carousel-control-prev" type="button" data-bs-target="#modalCarouselTattoo{{ tattoo.id }}" data-bs-slide="prev">
                                                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                                         <span class="visually-hidden">Previous</span>
@@ -190,6 +193,7 @@
                                                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                                         <span class="visually-hidden">Next</span>
                                                                     </button>
+                                                                    {% endif %}
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
@@ -228,6 +232,7 @@
                                                         </div>
                                                         {% endfor %}
                                                     </div>
+                                                    {% if master.images.count > 1 %}  <!-- Проверка на количество изображений -->
                                                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselMaster{{ master.id }}" data-bs-slide="prev">
                                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                         <span class="visually-hidden">Previous</span>
@@ -236,6 +241,7 @@
                                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                         <span class="visually-hidden">Next</span>
                                                     </button>
+                                                    {% endif %}
                                                 </div>
                                                 <div class="card-body mt-4">
                                                     <h5 class="card-title">{{ master.name }}</h5>
@@ -277,6 +283,7 @@
                                                                         </div>
                                                                         {% endfor %}
                                                                     </div>
+                                                                    {% if master.images.count > 1 %}  <!-- Проверка на количество изображений -->
                                                                     <button class="carousel-control-prev" type="button" data-bs-target="#modalCarouselMaster{{ master.id }}" data-bs-slide="prev">
                                                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                                         <span class="visually-hidden">Previous</span>
@@ -285,6 +292,7 @@
                                                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                                         <span class="visually-hidden">Next</span>
                                                                     </button>
+                                                                    {% endif %}
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
@@ -306,8 +314,10 @@
                             </div>
 
                             
-                            <!-- Пагинация для татуировок -->
+                            <!-- Пагинация -->
                             <div class="row">
+                                <!-- Пагинация для татуировок -->
+                                {% if tattoos.paginator.num_pages > 1 %}
                                 <nav aria-label="Page navigation example" id="tattoo-pagination">
                                     <ul class="pagination">
                                         {% if tattoos.has_previous %}
@@ -321,7 +331,7 @@
                                                 <span class="page-link" aria-hidden="true">&laquo;</span>
                                             </li>
                                         {% endif %}
-                                        
+
                                         {% for i in tattoos.paginator.page_range %}
                                             {% if tattoos.number == i %}
                                                 <li class="page-item active" aria-current="page">
@@ -333,7 +343,7 @@
                                                 </li>
                                             {% endif %}
                                         {% endfor %}
-                                        
+
                                         {% if tattoos.has_next %}
                                             <li class="page-item">
                                                 <a class="page-link" href="#" onclick="loadTattooPage('{{ tattoos.next_page_number }}')" aria-label="Next">
@@ -347,9 +357,15 @@
                                         {% endif %}
                                     </ul>
                                 </nav>
+                                {% else %}
+                                <div id="tattoo-pagination" style="display: none;"></div>
+                                {% endif %}
+
+
 
                                 <!-- Пагинация для мастеров -->
-                                <nav aria-label="Page navigation example" id="master-pagination" style="display: none;">
+                                {% if masters.paginator.num_pages > 1 %}
+                                <nav aria-label="Page navigation example" id="master-pagination">
                                     <ul class="pagination">
                                         {% if masters.has_previous %}
                                             <li class="page-item">
@@ -362,7 +378,7 @@
                                                 <span class="page-link" aria-hidden="true">&laquo;</span>
                                             </li>
                                         {% endif %}
-                                        
+
                                         {% for i in masters.paginator.page_range %}
                                             {% if masters.number == i %}
                                                 <li class="page-item active" aria-current="page">
@@ -374,7 +390,7 @@
                                                 </li>
                                             {% endif %}
                                         {% endfor %}
-                                        
+
                                         {% if masters.has_next %}
                                             <li class="page-item">
                                                 <a class="page-link" href="#" onclick="loadMasterPage('{{ masters.next_page_number }}')" aria-label="Next">
@@ -383,11 +399,14 @@
                                             </li>
                                         {% else %}
                                             <li class="page-item disabled">
-                                                <span class="page-link" aria-hidden="true">&raquo;</span>
+                                                <span class="page-link" aria-hidden="true">&laquo;</span>
                                             </li>
                                         {% endif %}
                                     </ul>
                                 </nav>
+                                {% else %}
+                                <div id="master-pagination" style="display: none;"></div>
+                                {% endif %}
                             </div>
 
 
@@ -480,6 +499,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleButton = document.getElementById('navtoggler-b');
+    
+            toggleButton.addEventListener('click', function () {
+                toggleButton.classList.toggle('active'); // Переключаем класс 'active'
+            });
+        });
+    </script>
     <script>
         let currentGallery = 'tattoo-gallery';  // по умолчанию открыта галерея татуировок
 
