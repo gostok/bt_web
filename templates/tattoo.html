@@ -21,6 +21,7 @@
 <body>
 
     <div class="background"></div>
+    <div class="blur-background" id="blurBackground" style="display: none;"></div>
 
     <header>
 
@@ -197,8 +198,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
-                                                                <p class="text-description">{{ tattoo.description }}</p>
                                                                 <p><span class="p-front">Мастер:</span> {{ tattoo.master.name }}</p>
+                                                                <p class="text-description">{{ tattoo.description }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -488,7 +489,7 @@
                         <a href="https://2gis.ru/kaliningrad/geo/70000001089473707">
                             <img class="footer-img" src="{% static 'images/img_soc/logo-2gis.png' %}" alt="2Gis">
                         </a>
-                        <p style="font-size: 12px; text-align: right;">* Meta Platforms Instagram признана экстремистской организацией<br> и запрещена на территории РФ</p>
+                        <p style="font-size: 10px; text-align: right;" class="meta-description">* Meta Platforms Instagram признана экстремистской организацией<br> и запрещена на территории РФ</p>
                     </div>
                 </div>
             </div>
@@ -506,6 +507,17 @@
             toggleButton.addEventListener('click', function () {
                 toggleButton.classList.toggle('active'); // Переключаем класс 'active'
             });
+        });
+        // Функция для показа модального окна и фона размытия
+        document.addEventListener('show.bs.modal', function (event) {
+            document.getElementById('blurBackground').style.display = 'block'; // Показываем фон
+        });
+
+        // Функция для скрытия модального окна и фона размытия
+        document.addEventListener('hidden.bs.modal', function (event) {
+            if (event.target.classList.contains('modal')) {
+                document.getElementById('blurBackground').style.display = 'none'; // Скрываем фон
+            }
         });
     </script>
     <script>

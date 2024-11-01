@@ -221,10 +221,22 @@ a {
     background-color: #ffec01;
 }
 
-.text-descriptiont {
+.text-description {
+    padding-top: 1em;
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: break-word;
+}
+
+.date-container {
+    justify-self: end;
+    /* Выравнивание по правому краю */
+    align-self: end;
+    /* Выравнивание по нижнему краю */
+    margin-top: 10px;
+    /* Отступ сверху */
+    text-align: right;
+    /* Выравнивание текста по правому краю */
 }
 
 
@@ -237,13 +249,15 @@ a {
     height: 100%;
 
     /* Полупрозрачный черный фон */
-    filter: blur(10px);
-    /* Эффект размытия */
+    backdrop-filter: blur(2px);
+    /* Эффект размытия фона */
     display: none;
     /* Скрываем по умолчанию */
-    z-index: 10;
+    z-index: 9;
     /* Убедитесь, что он под модальным окном */
 }
+
+
 
 
 

@@ -23,6 +23,7 @@
 <body>
     
     <div class="background"></div>
+    <div class="blur-background"></div>
 
     <header>
 
@@ -155,10 +156,11 @@
                                             <img id="postImage" class="img-fluid" alt="Изображение поста">
                                         </div>
                                         <p id="postDescription" class="text-description" style="white-space: pre-wrap;">Описание поста</p>
-                                        <br>
-                                        <br>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="date-container">
                                         <p class="p-space" id="postDate">Дата публикации</p>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -253,7 +255,7 @@
                         gostok </a>
                     </p>
                 </div>
-                <div class="col-lg-4 col-md-12 footer-text text-center mt-3">
+                <div class="col-lg-4 col-md-12 footer-text text-center mt-4">
                     <p>
                         <a href="/address/">Contacts</a> <br>
                         <a href="https://t.me/daedsierutan">Job</a> <br>
@@ -262,7 +264,7 @@
                     </p>
                 </div>
                 <div class="col-lg-4 col-md-12 media-links">
-                    <div class="social-icons">
+                    <div class="social-icons mt-2">
                         <a href="https://www.instagram.com/bjus.tattoo/profilecard/?igsh=MXB4Y25wY2tkeXZhdQ==">
                             <img class="footer-img" 
                                 src="{% static 'images/img_soc/inst.png' %}" alt="Instagram">
@@ -285,7 +287,7 @@
                         <a href="https://2gis.ru/kaliningrad/geo/70000001089473707">
                             <img class="footer-img" src="{% static 'images/img_soc/logo-2gis.png' %}" alt="2Gis">
                         </a>
-                        <p style="font-size: 12px; text-align: right;">* Meta Platforms Instagram признана экстремистской организацией<br> и запрещена на территории РФ</p>
+                        <p style="font-size: 10px; text-align: right;" class="meta-description">* Meta Platforms Instagram признана экстремистской организацией<br> и запрещена на территории РФ</p>
                     </div>
                 </div>
             </div>
@@ -331,9 +333,17 @@
             document.getElementById('postDescription').innerText = description;
             document.getElementById('postDate').innerText = publishedDate;
         
+            // Показываем слой размытия
+            document.querySelector('.blur-background').style.display = 'block';
+
             // Открываем модальное окно
             const modal = new bootstrap.Modal(document.getElementById('postModal'));
             modal.show();
+
+            // Скрываем слой размытия при закрытии модального окна
+            modal._element.addEventListener('hidden.bs.modal', function () {
+                document.querySelector('.blur-background').style.display = 'none';
+            }, { once: true }); 
         }
         
     </script>

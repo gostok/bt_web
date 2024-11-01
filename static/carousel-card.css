@@ -27,6 +27,7 @@
     height: 60%;
     overflow: hidden;
     transition: transform 0.5s ease;
+
 }
 
 .carousel>.carousel-item img {
@@ -73,7 +74,7 @@
 
 /* Карусели в модальных окнах */
 .modal-body .carousel {
-    height: 400px;
+    height: 430px;
     /* Фиксированная высота для карусели */
 }
 
@@ -88,4 +89,5 @@
     /* Убирает пробелы под изображением */
     padding: 12px;
     /* Отступы */
+
 }
