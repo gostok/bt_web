@@ -94,7 +94,7 @@ a {
 .other-card .card {
     background-color: rgba(36, 36, 62, 0.5);
     border: 0px solid;
-    aspect-ratio: 1 / 1.5;
+    aspect-ratio: 3 / 4;
     width: 100%;
     display: flex;
     flex-direction: column;

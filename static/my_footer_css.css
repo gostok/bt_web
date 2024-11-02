@@ -78,9 +78,14 @@
   background-color: rgba(36, 36, 62, 0.5);
   position: relative;
   height: auto;
-  margin: 1em;
+
+  width: 100%;
 }
 
 .sidebar .card-title {
   color: #ffec01;
+}
+
+.sidebar .card-text {
+  width: 100%;
 }

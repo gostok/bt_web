@@ -1,0 +1,11 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+
+{% block content %}
+    <div class="help-text">
+        <div class="help-div" style="background-color: rgba(36, 36, 62, 0.5); border: 2px black solid; width: 500px; max-heidth: 500px;">
+            <p style="margin: 1em;">{% trans "Изображение для Новостных Карточек должно быть в соотношение 3:4 , то есть вертикальное, портретное." %}</p>
+        </div>
+    </div>
+    {{ block.super }}
+{% endblock %}

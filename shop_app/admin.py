@@ -9,6 +9,7 @@ class ProductImageInline(admin.TabularInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
+    change_form_template = "admin/Product_change_form.html"
     list_display = ["title", "price", "discount"]
     fields = ["title", "price", "discount", "description", "seller"]
     inlines = [ProductImageInline]

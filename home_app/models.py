@@ -3,8 +3,10 @@ from django.core.exceptions import ValidationError
 
 
 def validate_image_blog_carousel(image):
-    if image.width != 1700 or image.height != 400:
-        raise ValidationError("Разрешение изображения должно быть 1700x400 пикселей.")
+    if image.width < 1700 or image.height < 400:
+        raise ValidationError(
+            "Разрешение изображения должно быть не меньше 1700x400 пикселей."
+        )
 
 
 class CarouselImage(models.Model):

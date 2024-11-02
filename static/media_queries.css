@@ -1,4 +1,4 @@
-@media (min-width: 768px) and (max-width: 1199px) {
+@media (max-width: 1199px) {
     .map-container {
         width: 100%;
         height: 300px;
@@ -21,9 +21,68 @@
         font-size: 8px;
     }
 
+    .button-container {
+        flex-direction: column;
+    }
+
+    .other-card .card {
+        height: auto;
+        /* Убедитесь, что высота карточки адаптивна */
+    }
+
+    .carousel>.carousel-item img {
+        height: 100%;
+        /* Убедитесь, что изображения адаптивны */
+    }
+
+    .other-card .card-body {
+        padding: 0.5em;
+        height: auto;
+        /* Уменьшите отступы для мобильных устройств */
+    }
+
+    .blog-card .card {
+        height: auto;
+        /* Убедитесь, что высота карточки адаптивна */
+    }
+
+    .blog-card .card-body {
+        padding: 0.5em;
+        height: auto;
+        /* Уменьшите отступы для мобильных устройств */
+    }
+
+    .image-wrapper-b img {
+        height: 100%;
+    }
+
 }
 
-@media (max-width: 768px) {
+@media (max-width: 769px) {
+    .other-card .card {
+        height: auto;
+        /* Убедитесь, что высота карточки адаптивна */
+    }
+
+    .carousel>.carousel-item img {
+        height: auto;
+        /* Убедитесь, что изображения адаптивны */
+    }
+
+    .other-card .card-body {
+        padding: 0.5em;
+        height: auto;
+        /* Уменьшите отступы для мобильных устройств */
+    }
+
+    .other-card-margin {
+        margin-left: 1em;
+    }
+
+
+}
+
+@media (max-width: 767px) {
     .map-container {
         display: none;
 
@@ -72,4 +131,52 @@
     .other-card {
         margin-left: 1em;
     }
+
+    .other-card .card {
+        height: auto;
+        /* Убедитесь, что высота карточки адаптивна */
+    }
+
+    .carousel>.carousel-item img {
+        height: 100%;
+        /* Убедитесь, что изображения адаптивны */
+    }
+
+    .other-card .card-body {
+        padding: 0.5em;
+        height: auto;
+        /* Уменьшите отступы для мобильных устройств */
+    }
+
+    .other-card-margin {
+        margin-left: 0;
+        margin-right: 4em;
+    }
+}
+
+
+.mobile-version .map-container {
+    width: 100%;
+    height: 300px;
+}
+
+.mobile-version .map-container {
+    width: 100%;
+
+    margin-left: 0;
+    margin-right: 0;
+    border: 1px solid;
+}
+
+.mobile-version .contacts-conteiner {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.mobile-version .meta-description {
+    font-size: 8px;
+}
+
+.mobile-version .button-container {
+    flex-direction: column;
 }

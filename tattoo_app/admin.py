@@ -13,6 +13,7 @@ class MasterImageInline(admin.TabularInline):
 
 
 class TattooAdmin(admin.ModelAdmin):
+    change_form_template = "admin/Tattoo_change_form.html"
     list_display = ("title", "publication_date", "category")
     search_fields = ("title",)
     list_filter = ("publication_date", "category")
@@ -20,6 +21,7 @@ class TattooAdmin(admin.ModelAdmin):
 
 
 class MasterAdmin(admin.ModelAdmin):
+    change_form_template = "admin/Master_change_form.html"
     list_display = ("name", "publication_date", "category")
     search_fields = ("name",)
     list_filter = ("publication_date", "category")

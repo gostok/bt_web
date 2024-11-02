@@ -89,136 +89,140 @@
                         <!-- Карточки товаров -->
                         <div class="col-lg-12 col-md-12 mt-4">
                             <div class="row">
-                                {% for product in products %}
-                                <div class="col-lg-4 col-md-6 col-sm-12 mb-3 shop-card other-card">
-                                    <div class="card">
-                                        {% if product.images.first %}
-                                        
-                                            <div id="carouselCard{{ product.id }}" class="carousel slide">
-                                                <ol class="carousel-indicators">
-                                                    {% for image in product.images.all %}
-                                                    <li data-bs-target="#carouselCard{{ product.id }}" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" id="liCarouselna"></li>
-                                                    {% endfor %}
-                                                </ol>
-                                                <div class="carousel-inner">
-                                                    {% for image in product.images.all %}
-                                                    <div class="carousel-item{% if forloop.first %} active{% endif %}">
-                                                        <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ product.title }}">
+                                <div class="row">
+                                    <div class="row other-card-margin">
+                                        {% for product in products %}
+                                        <div class="col-lg-4 col-md-6 col-sm-12 mb-3 shop-card other-card">
+                                            <div class="card">
+                                                {% if product.images.first %}
+                                                
+                                                    <div id="carouselCard{{ product.id }}" class="carousel slide">
+                                                        <ol class="carousel-indicators">
+                                                            {% for image in product.images.all %}
+                                                            <li data-bs-target="#carouselCard{{ product.id }}" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" id="liCarouselna"></li>
+                                                            {% endfor %}
+                                                        </ol>
+                                                        <div class="carousel-inner">
+                                                            {% for image in product.images.all %}
+                                                            <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                                                                <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ product.title }}">
+                                                            </div>
+                                                            {% endfor %}
+                                                        </div>
+                                                        {% if product.images.count > 1 %}  <!-- Проверка на количество изображений -->
+                                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselCard{{ product.id }}" data-bs-slide="prev">
+                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Previous</span>
+                                                        </button>
+                                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselCard{{ product.id }}" data-bs-slide="next">
+                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Next</span>
+                                                        </button>
+                                                        {% endif %}
                                                     </div>
-                                                    {% endfor %}
-                                                </div>
-                                                {% if product.images.count > 1 %}  <!-- Проверка на количество изображений -->
-                                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselCard{{ product.id }}" data-bs-slide="prev">
-                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                    <span class="visually-hidden">Previous</span>
-                                                </button>
-                                                <button class="carousel-control-next" type="button" data-bs-target="#carouselCard{{ product.id }}" data-bs-slide="next">
-                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                    <span class="visually-hidden">Next</span>
-                                                </button>
+                                                    {% if product.discount > 0 %}
+                                                    <span class="badge discount-badge">Скидка {{ product.discount }}%</span>
+                                                    {% endif %}
+                                                
                                                 {% endif %}
-                                            </div>
-                                            {% if product.discount > 0 %}
-                                            <span class="badge discount-badge">Скидка {{ product.discount }}%</span>
-                                            {% endif %}
-                                        
-                                        {% endif %}
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ product.title }}</h5>
-                                            <p class="card-text">
-                                                {% if product.discount > 0 %}
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{ product.title }}</h5>
+                                                    <p class="card-text">
+                                                        {% if product.discount > 0 %}
 
-                                                <span style="text-decoration: line-through; margin: 1em;">{{ product.price }} ₽</span>
-                                                <span class="text-success-s" style="color: rgb(135,224,239);">{{ product.discounted_price|floatformat:2 }} ₽</span>
-                                                {% else %}
-                                                <span style="margin: 1em;">{{ product.price }} ₽</span>
-                                                {% endif %}
-                                            </p>
-                                            <div class="text-center">
-                                                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal{{ product.id }}">Узнать больше</a>
+                                                        <span style="text-decoration: line-through; margin: 1em;">{{ product.price }} ₽</span>
+                                                        <span class="text-success-s" style="color: rgb(135,224,239);">{{ product.discounted_price|floatformat:2 }} ₽</span>
+                                                        {% else %}
+                                                        <span style="margin: 1em;">{{ product.price }} ₽</span>
+                                                        {% endif %}
+                                                    </p>
+                                                    <div class="text-center">
+                                                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal{{ product.id }}">Узнать больше</a>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
 
-                                <!-- Модальное окно для товара -->
-                                <div class="modal fade mt-4 modal-bg-bl-front" id="productModal{{ product.id }}" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content modal-card-text modal-css">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="productModalLabel">{{ product.title }}</h5>    
-                                                <button type="button" class="btn-close custom-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <!-- Карусель изображений -->
-                                                        <div id="carouselExample{{ product.id }}" class="carousel slide"> 
-                                                            <ol class="carousel-indicators">
-                                                                {% for image in product.images.all %}
-                                                                <li data-bs-target="#carouselExample{{ product.id }}" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" id="liCarouselna"></li>
-                                                                {% endfor %}
-                                                            </ol>
-                                                            <div class="carousel-inner">
-                                                                {% for image in product.images.all %}
-                                                                <div class="carousel-item{% if forloop.first %} active{% endif %}">
-                                                                    <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ product.title }}">
+                                        <!-- Модальное окно для товара -->
+                                        <div class="modal fade mt-4 modal-bg-bl-front" id="productModal{{ product.id }}" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content modal-card-text modal-css">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="productModalLabel">{{ product.title }}</h5>    
+                                                        <button type="button" class="btn-close custom-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <!-- Карусель изображений -->
+                                                                <div id="carouselExample{{ product.id }}" class="carousel slide"> 
+                                                                    <ol class="carousel-indicators">
+                                                                        {% for image in product.images.all %}
+                                                                        <li data-bs-target="#carouselExample{{ product.id }}" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" id="liCarouselna"></li>
+                                                                        {% endfor %}
+                                                                    </ol>
+                                                                    <div class="carousel-inner">
+                                                                        {% for image in product.images.all %}
+                                                                        <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                                                                            <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ product.title }}">
+                                                                        </div>
+                                                                        {% endfor %}
+                                                                    </div>
+                                                                    {% if product.images.count > 1 %}  <!-- Проверка на количество изображений -->
+                                                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample{{ product.id }}" data-bs-slide="prev">
+                                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                                        <span class="visually-hidden">Previous</span>
+                                                                    </button>
+                                                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample{{ product.id }}" data-bs-slide="next">
+                                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                                        <span class="visually-hidden">Next</span>
+                                                                    </button>
+                                                                    {% endif %}
                                                                 </div>
+                                                                
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <h5>Цена:
+                                                                    <h5 style="margin: 1em; color: white;">
+                                                                        {% if product.discount > 0 %}
+                                                                            <span style="text-decoration: line-through;">{{ product.price }} ₽</span>
+                                                                            <span class="text-success-s" style="color: rgb(135,224,239);">{{ product.discounted_price|floatformat:2 }} ₽</span>
+                                                                        {% else %}
+                                                                            {{ product.price }} ₽
+                                                                        {% endif %}
+                                                                    </h5>
+                                                                </h5>
+                                                                <br>
+                                                                <h5>Описание товара:</h5>
+                                                                <p class="text-description" style="margin: 1em;">{{ product.description|linebreaks }}</p>
+                                                                <br>
+                                                                <h5><span class="p-front">Контакты продавца:</span></h5>
+                                                                {% for contact in product.seller_contacts %}
+                                                                    <p style="margin: 1em;">
+                                                                        <span class="p-front">{{ contact.contact_type }}:</span>
+                                                                        {% if contact.contact_type == "Телефон" %}
+                                                                            <a style="color: rgb(135,224,239);" href="tel:{{ contact.value|urlencode }}">{{ contact.value }}</a>
+                                                                        {% elif contact.contact_type == "Email" %}
+                                                                            <a style="color: rgb(135,224,239);" href="mailto:{{ contact.value|urlencode }}">{{ contact.value }}</a>
+                                                                        {% elif contact.contact_type == "Соц-сеть" %}
+                                                                            <a style="color: rgb(135,224,239);" href="{{ contact.value }}" target="_blank">{{ contact.value }}</a>
+                                                                        {% else %}
+                                                                            {{ contact.value }}
+                                                                        {% endif %}
+                                                                    </p>
+                                                                {% empty %}
+                                                                    <p>Контактная информация отсутствует.</p>
                                                                 {% endfor %}
                                                             </div>
-                                                            {% if product.images.count > 1 %}  <!-- Проверка на количество изображений -->
-                                                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample{{ product.id }}" data-bs-slide="prev">
-                                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                                <span class="visually-hidden">Previous</span>
-                                                            </button>
-                                                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample{{ product.id }}" data-bs-slide="next">
-                                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                                <span class="visually-hidden">Next</span>
-                                                            </button>
-                                                            {% endif %}
                                                         </div>
-                                                        
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <h5>Цена:
-                                                            <h5 style="margin: 1em; color: white;">
-                                                                {% if product.discount > 0 %}
-                                                                    <span style="text-decoration: line-through;">{{ product.price }} ₽</span>
-                                                                    <span class="text-success-s" style="color: rgb(135,224,239);">{{ product.discounted_price|floatformat:2 }} ₽</span>
-                                                                {% else %}
-                                                                    {{ product.price }} ₽
-                                                                {% endif %}
-                                                            </h5>
-                                                        </h5>
-                                                        <br>
-                                                        <h5>Описание товара:</h5>
-                                                        <p class="text-description" style="margin: 1em;">{{ product.description|linebreaks }}</p>
-                                                        <br>
-                                                        <h5><span class="p-front">Контакты продавца:</span></h5>
-                                                        {% for contact in product.seller_contacts %}
-                                                            <p style="margin: 1em;">
-                                                                <span class="p-front">{{ contact.contact_type }}:</span>
-                                                                {% if contact.contact_type == "Телефон" %}
-                                                                    <a style="color: rgb(135,224,239);" href="tel:{{ contact.value|urlencode }}">{{ contact.value }}</a>
-                                                                {% elif contact.contact_type == "Email" %}
-                                                                    <a style="color: rgb(135,224,239);" href="mailto:{{ contact.value|urlencode }}">{{ contact.value }}</a>
-                                                                {% elif contact.contact_type == "Соц-сеть" %}
-                                                                    <a style="color: rgb(135,224,239);" href="{{ contact.value }}" target="_blank">{{ contact.value }}</a>
-                                                                {% else %}
-                                                                    {{ contact.value }}
-                                                                {% endif %}
-                                                            </p>
-                                                        {% empty %}
-                                                            <p>Контактная информация отсутствует.</p>
-                                                        {% endfor %}
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
-                                            
                                         </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
-                                {% endfor %}
                             </div>
                         </div>
 
@@ -280,7 +284,7 @@
 
                 <!-- правая часть -->
                 <div class="col-lg-3 col-md-12">
-                    <div class="row px-2">
+                    <div class="row px-2 sidebar-row">
                         <!-- сайдбар -->
                         <div class="col-lg-12 sidebar my-4 mt-3">
                             {% for news in sidebar_news %}
@@ -314,7 +318,7 @@
                         gostok </a>
                     </p>
                 </div>
-                <div class="col-lg-4 col-md-12 footer-text text-center mt-3">
+                <div class="col-lg-4 col-md-12 footer-text text-center mt-4">
                     <p>
                         <a href="/address/">Contacts</a> <br>
                         <a href="https://t.me/daedsierutan">Job</a> <br>
@@ -323,7 +327,7 @@
                     </p>
                 </div>
                 <div class="col-lg-4 col-md-12 media-links">
-                    <div class="social-icons">
+                    <div class="social-icons mt-2">
                         <a href="https://www.instagram.com/bjus.tattoo/profilecard/?igsh=MXB4Y25wY2tkeXZhdQ==">
                             <img class="footer-img" 
                                 src="{% static 'images/img_soc/inst.png' %}" alt="Instagram">

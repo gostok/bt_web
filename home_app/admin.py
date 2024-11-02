@@ -3,9 +3,16 @@ from django.utils.html import format_html
 from .models import *
 
 
+class CarouselImageAdmin(admin.ModelAdmin):
+
+    change_form_template = "admin/Carousel_change_form.html"
+
+
 class BlogPostAdmin(admin.ModelAdmin):
     list_display = ("title", "published_date")
     prepopulated_fields = {"short_description": ("title",)}
+
+    change_form_template = "admin/BlogPost_change_form.html"
 
 
 class SidebarNewsAdmin(admin.ModelAdmin):
@@ -15,15 +22,7 @@ class SidebarNewsAdmin(admin.ModelAdmin):
 class HeaderImageAdmin(admin.ModelAdmin):
     list_display = ("id", "image")
 
-    def get_form(self, request, obj=None, **kwargs):
-        form = super().get_form(request, obj, **kwargs)
-        # Добавляем подсказку в форму
-        form.base_fields["image"].help_text = format_html(
-            '<div style="color: red; font-weight: bold;">'
-            "Пожалуйста, загрузите изображение размером не меньше 2560х1440 пикселей."
-            "</div>"
-        )
-        return form
+    change_form_template = "admin/HeaderImage_change_form.html"
 
 
 @admin.register(SiteStatistics)
@@ -31,7 +30,7 @@ class SiteStatisticsAdmin(admin.ModelAdmin):
     list_display = ("total_visits",)
 
 
-admin.site.register(CarouselImage)
+admin.site.register(CarouselImage, CarouselImageAdmin)
 admin.site.register(BlogPost, BlogPostAdmin)
 admin.site.register(SidebarNews, SidebarNewsAdmin)
 admin.site.register(HeaderImage, HeaderImageAdmin)

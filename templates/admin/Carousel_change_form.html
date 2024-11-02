@@ -1,0 +1,13 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+
+{% block content %}
+    <div class="help-text">
+        <div class="help-div" style="background-color: rgba(36, 36, 62, 0.5); border: 2px black solid; width: 500px;">
+            <p style="margin: 1em;">{% trans "Разрешение изображения для Главной Карусели должно быть 1700x400 пикселей, соотношение сторон 4.3:1 или 17:4." %}</p>
+            <p style="margin: 1em;">{% trans "В Alt text нужно добавить название для картинки." %}</p>
+        </div>
+    </div>
+    {{ block.super }}
+{% endblock %}
+

@@ -86,7 +86,7 @@
                     
                     <div class="row">
                         <div class="col text-center btn-galelery">
-                            <div class="d-flex flex-column flex-md-row justify-content-center">
+                            <div class="d-flex flex-column flex-lg-row justify-content-center button-container">
                                 <button type="button" class="btn btn-primary btn-lg flex-fill mx-1" onclick="showTattooGallery()" id="tattoo-button">Тату Галерея</button>
                                 <button type="button" class="btn btn-secondary btn-lg flex-fill mx-1" onclick="showMasterGallery()" id="master-button">Мастера</button>
                                 {% if tattoos %}
@@ -113,16 +113,16 @@
 
 
                     <div class="col-lg-12 col-md-12 mt-4">
-                        <div class="row" id="gallery-container">
+                        <div class="row " id="gallery-container">
 
-                            <div class="row" id="tattoo-gallery-container">
+                            <div class="row other-card-margin" id="tattoo-gallery-container">
                                 <!-- Галерея тату -->
                                 <div class="row tattoo-gallery">
 
                                     {% if tattoos %}
                                     
                                         {% for tattoo in tattoos %}
-                                        <div class="col-lg-4 col-md-6 col-sm-12 mb-3 mt-4 tattoo-card other-card">
+                                        <div class="col-lg-4 col-md-6 col-sm-12 mt-4 tattoo-card other-card">
                                             <div class="card card-tattoo">
                                                 <div id="carouselTattoo{{ tattoo.id }}" class="carousel slide" data-bs-interval="false">
                                                     <ol class="carousel-indicators">
@@ -213,7 +213,7 @@
                                 </div>
                             </div>
 
-                            <div class="row" id="master-gallery-container">
+                            <div class="row other-card-margin" id="master-gallery-container">
                                 <!-- Мастера -->
                                 <div class="row master-gallery">
                                     {% if masters %}
@@ -457,7 +457,7 @@
                         gostok </a>
                     </p>
                 </div>
-                <div class="col-lg-4 col-md-12 footer-text text-center mt-3">
+                <div class="col-lg-4 col-md-12 footer-text text-center mt-4">
                     <p>
                         <a href="/address/">Contacts</a> <br>
                         <a href="https://t.me/daedsierutan">Job</a> <br>
@@ -466,7 +466,7 @@
                     </p>
                 </div>
                 <div class="col-lg-4 col-md-12 media-links">
-                    <div class="social-icons">
+                    <div class="social-icons mt-2">
                         <a href="https://www.instagram.com/bjus.tattoo/profilecard/?igsh=MXB4Y25wY2tkeXZhdQ==">
                             <img class="footer-img" 
                                 src="{% static 'images/img_soc/inst.png' %}" alt="Instagram">
@@ -615,6 +615,8 @@
         });
         
     </script>
+
+    
 
 </body>
 
