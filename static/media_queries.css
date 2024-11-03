@@ -56,6 +56,10 @@
         height: 100%;
     }
 
+    .other-card-margin {
+        margin-left: 1em;
+    }
+
 }
 
 @media (max-width: 769px) {
