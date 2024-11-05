@@ -9,61 +9,125 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('home_app', '0002_alter_carouselimage_image'),
+        ("home_app", "0002_alter_carouselimage_image"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=100)),
-                ('price', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('discount', models.DecimalField(decimal_places=0, default=0, max_digits=3)),
-                ('description', models.TextField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=100)),
+                ("price", models.DecimalField(decimal_places=2, max_digits=10)),
+                (
+                    "discount",
+                    models.DecimalField(decimal_places=0, default=0, max_digits=3),
+                ),
+                ("description", models.TextField()),
             ],
         ),
         migrations.CreateModel(
-            name='Seller',
+            name="Seller",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
             ],
         ),
         migrations.CreateModel(
-            name='ShopHeaderImage',
+            name="ShopSidebarNews",
             fields=[
-                ('headerimage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='home_app.headerimage')),
+                (
+                    "sidebarnews_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="home_app.sidebarnews",
+                    ),
+                ),
             ],
-            bases=('home_app.headerimage',),
+            bases=("home_app.sidebarnews",),
         ),
         migrations.CreateModel(
-            name='ShopSidebarNews',
+            name="ProductImage",
             fields=[
-                ('sidebarnews_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='home_app.sidebarnews')),
-            ],
-            bases=('home_app.sidebarnews',),
-        ),
-        migrations.CreateModel(
-            name='ProductImage',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(upload_to='product_images/')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='images', to='shop_app.product')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("image", models.ImageField(upload_to="product_images/")),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="images",
+                        to="shop_app.product",
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='product',
-            name='seller',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='shop_app.seller'),
+            model_name="product",
+            name="seller",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="shop_app.seller"
+            ),
         ),
         migrations.CreateModel(
-            name='Contact',
+            name="Contact",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('contact_type', models.CharField(choices=[('Телефон', 'Телефон'), ('Email', 'Email'), ('Соц-сеть', 'Соц-сеть')], max_length=100)),
-                ('value', models.CharField(max_length=200)),
-                ('seller', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='contacts', to='shop_app.seller')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "contact_type",
+                    models.CharField(
+                        choices=[
+                            ("Телефон", "Телефон"),
+                            ("Email", "Email"),
+                            ("Соц-сеть", "Соц-сеть"),
+                        ],
+                        max_length=100,
+                    ),
+                ),
+                ("value", models.CharField(max_length=200)),
+                (
+                    "seller",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="contacts",
+                        to="shop_app.seller",
+                    ),
+                ),
             ],
         ),
     ]

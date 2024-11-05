@@ -1,10 +1,6 @@
 from django.db import models
-from home_app.models import SidebarNews, HeaderImage
+from home_app.models import SidebarNews
 
 
 class AddressSidebarNews(SidebarNews):
-    pass
-
-
-class AddressHeaderImage(HeaderImage):
     pass

@@ -1,9 +1,5 @@
 from django.db import models
-from home_app.models import SidebarNews, HeaderImage
-
-
-class SessionHeaderImage(HeaderImage):
-    pass
+from home_app.models import SidebarNews
 
 
 class SessionSidebarNews(SidebarNews):

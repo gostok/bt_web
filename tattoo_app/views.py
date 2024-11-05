@@ -4,7 +4,7 @@ from .models import *
 
 
 def tattoo(request):
-    header_image = HeaderImage.objects.first()
+
     sidebar_news = SidebarNews.objects.all()
 
     categories = Category.objects.all()
@@ -27,7 +27,6 @@ def tattoo(request):
     tab = request.GET.get("tab", "tattoo")
 
     context = {
-        "header_image": header_image,
         "sidebar_news": sidebar_news,
         "tattoos": tattoos,
         "masters": masters,

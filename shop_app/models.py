@@ -1,13 +1,9 @@
 from django.db import models
 from django.core.exceptions import ValidationError
-from home_app.models import SidebarNews, HeaderImage
+from home_app.models import SidebarNews
 
 
 class ShopSidebarNews(SidebarNews):
-    pass
-
-
-class ShopHeaderImage(HeaderImage):
     pass
 
 

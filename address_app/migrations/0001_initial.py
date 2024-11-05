@@ -9,22 +9,25 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('home_app', '0001_initial'),
+        ("home_app", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AddressHeaderImage',
+            name="AddressSidebarNews",
             fields=[
-                ('headerimage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='home_app.headerimage')),
+                (
+                    "sidebarnews_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="home_app.sidebarnews",
+                    ),
+                ),
             ],
-            bases=('home_app.headerimage',),
-        ),
-        migrations.CreateModel(
-            name='AddressSidebarNews',
-            fields=[
-                ('sidebarnews_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='home_app.sidebarnews')),
-            ],
-            bases=('home_app.sidebarnews',),
+            bases=("home_app.sidebarnews",),
         ),
     ]

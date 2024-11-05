@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
-from home_app.models import SidebarNews, HeaderImage
+from home_app.models import SidebarNews
 
 
 class Category(models.Model):
@@ -8,10 +8,6 @@ class Category(models.Model):
 
     def __str__(self) -> str:
         return self.name
-
-
-class TattooHeaderImage(HeaderImage):
-    pass
 
 
 class TattooSidebarNews(SidebarNews):

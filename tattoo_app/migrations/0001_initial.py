@@ -9,66 +9,147 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('home_app', '0001_initial'),
+        ("home_app", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
             ],
         ),
         migrations.CreateModel(
-            name='TattooHeaderImage',
+            name="TattooSidebarNews",
             fields=[
-                ('headerimage_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='home_app.headerimage')),
+                (
+                    "sidebarnews_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="home_app.sidebarnews",
+                    ),
+                ),
             ],
-            bases=('home_app.headerimage',),
+            bases=("home_app.sidebarnews",),
         ),
         migrations.CreateModel(
-            name='TattooSidebarNews',
+            name="Master",
             fields=[
-                ('sidebarnews_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='home_app.sidebarnews')),
-            ],
-            bases=('home_app.sidebarnews',),
-        ),
-        migrations.CreateModel(
-            name='Master',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
-                ('description', models.TextField()),
-                ('publication_date', models.DateTimeField(auto_now_add=True)),
-                ('category', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='masters', to='tattoo_app.category')),
-            ],
-        ),
-        migrations.CreateModel(
-            name='MasterImage',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(upload_to='master_images/')),
-                ('master', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='images', to='tattoo_app.master')),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Tattoo',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=200)),
-                ('description', models.TextField()),
-                ('publication_date', models.DateTimeField(auto_now_add=True)),
-                ('category', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='tattoos', to='tattoo_app.category')),
-                ('master', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='tattoos', to='tattoo_app.master')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200)),
+                ("description", models.TextField()),
+                ("publication_date", models.DateTimeField(auto_now_add=True)),
+                (
+                    "category",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="masters",
+                        to="tattoo_app.category",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='TattooImage',
+            name="MasterImage",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(upload_to='tattoo_images/')),
-                ('tattoo', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='images', to='tattoo_app.tattoo')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("image", models.ImageField(upload_to="master_images/")),
+                (
+                    "master",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="images",
+                        to="tattoo_app.master",
+                    ),
+                ),
+            ],
+        ),
+        migrations.CreateModel(
+            name="Tattoo",
+            fields=[
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=200)),
+                ("description", models.TextField()),
+                ("publication_date", models.DateTimeField(auto_now_add=True)),
+                (
+                    "category",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="tattoos",
+                        to="tattoo_app.category",
+                    ),
+                ),
+                (
+                    "master",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="tattoos",
+                        to="tattoo_app.master",
+                    ),
+                ),
+            ],
+        ),
+        migrations.CreateModel(
+            name="TattooImage",
+            fields=[
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("image", models.ImageField(upload_to="tattoo_images/")),
+                (
+                    "tattoo",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="images",
+                        to="tattoo_app.tattoo",
+                    ),
+                ),
             ],
         ),
     ]

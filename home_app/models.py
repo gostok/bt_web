@@ -42,20 +42,6 @@ class SidebarNews(models.Model):
         return self.title
 
 
-def validate_image(image):
-    if image.width < 2560 or image.height < 1440:
-        raise ValidationError(
-            "Разрешение изображения должно быть не меньше 2560х1440 пикселей."
-        )
-
-
-class HeaderImage(models.Model):
-    image = models.ImageField(upload_to="header_images/", validators=[validate_image])
-
-    def __str__(self) -> str:
-        return "Header Image"
-
-
 class SiteStatistics(models.Model):
     total_visits = models.PositiveIntegerField(default=0)
 

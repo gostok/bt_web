@@ -19,12 +19,6 @@ class SidebarNewsAdmin(admin.ModelAdmin):
     list_display = ("title",)
 
 
-class HeaderImageAdmin(admin.ModelAdmin):
-    list_display = ("id", "image")
-
-    change_form_template = "admin/HeaderImage_change_form.html"
-
-
 @admin.register(SiteStatistics)
 class SiteStatisticsAdmin(admin.ModelAdmin):
     list_display = ("total_visits",)
@@ -33,4 +27,3 @@ class SiteStatisticsAdmin(admin.ModelAdmin):
 admin.site.register(CarouselImage, CarouselImageAdmin)
 admin.site.register(BlogPost, BlogPostAdmin)
 admin.site.register(SidebarNews, SidebarNewsAdmin)
-admin.site.register(HeaderImage, HeaderImageAdmin)

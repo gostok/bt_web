@@ -20,10 +20,46 @@
     opacity: 0.8;
 }
 
+.desktop-header,
+.tablet-header,
+.mobile-header {
+    display: none;
+}
 
+
+@media (min-width: 1200px) {
+    .desktop-header {
+        display: block;
+    }
+
+    .tablet-header,
+    .mobile-header {
+        display: none;
+    }
+}
+
+@media (max-width: 1199px) {
+    .tablet-header {
+        display: block;
+    }
+
+    .desktop-header,
+    .mobile-header {
+        display: none;
+    }
+}
 
 @media (max-width: 768px) {
     .bgimage {
         height: 300px;
+    }
+
+    .mobile-header {
+        display: block;
+    }
+
+    .desktop-header,
+    .tablet-header {
+        display: none;
     }
 }

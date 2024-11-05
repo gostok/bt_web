@@ -4,7 +4,6 @@ from .models import *
 
 
 def shop(request):
-    header_image = HeaderImage.objects.first()
     sidebar_news = SidebarNews.objects.all()
     product_list = Product.objects.all()
     paginator = Paginator(product_list, 9)
@@ -15,7 +14,6 @@ def shop(request):
         product.seller_contacts = product.seller.contacts.all()
 
     context = {
-        "header_image": header_image,
         "sidebar_news": sidebar_news,
         "products": products,
     }

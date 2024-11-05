@@ -43,7 +43,7 @@ class BookSessionView(View):
     @method_decorator(csrf_exempt)
     def get(self, request):
         print("GET запрос к BookSessionView")
-        header_image = HeaderImage.objects.first()
+
         sidebar_news = SidebarNews.objects.all()
         form = SessionForm()
         available_dates = AvailableDate.objects.prefetch_related(
@@ -53,7 +53,6 @@ class BookSessionView(View):
         selected_date = request.GET.get("date", "")
         selected_time = request.GET.get("time", "")
         context = {
-            "header_image": header_image,
             "sidebar_news": sidebar_news,
             "form": form,
             "available_dates": available_dates,
