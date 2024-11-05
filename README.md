@@ -31,22 +31,22 @@
 - поиске места и любой другой информации о тату-студии;
 - поиске других работ Мастеров, например их товары, связанные с искусством;
 
-#### Используемые технологии:
+### Используемые технологии:
 - Python
 - Django
 - Aiogram
 - HTML / CSS
 - JavaScript
 
-##### Установка:
+### Установка:
 git clone https://github.com/gostok/bt_web.git
 cd bt_web
 pip install -r requirements.txt
 
-###### Запуск:
+### Запуск:
 py manage.py runserver
 
-####### Пример Главной страницы:
+### Пример Главной страницы:
 
 ![пример-1](https://github.com/user-attachments/assets/11d75965-aa0e-4248-a015-e5f9b02f0e50)
 
