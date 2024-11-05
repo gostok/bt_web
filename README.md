@@ -39,9 +39,9 @@
 - JavaScript
 
 ### Установка:
-git clone https://github.com/gostok/bt_web.git
-cd bt_web
-pip install -r requirements.txt
+git clone https://github.com/gostok/bt_web.git <br>
+cd bt_web <br>
+pip install -r requirements.txt 
 
 ### Запуск:
 py manage.py runserver
