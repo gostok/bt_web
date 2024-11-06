@@ -4,7 +4,14 @@ from django.core.paginator import Paginator
 
 
 def home(request):
-
+    """
+    Обрабатывает запрос к странице 'Главная' и возвращает соответствующий шаблон.
+    Настройка пагинации для blog_posts.
+    Контекст:
+    - carousel_images: модель карусели;
+    - blog_posts: модель новостных карточек;
+    - sidebar_news: общая модель из home_app.
+    """
     carousel_images = CarouselImage.objects.all()
     blog_posts = BlogPost.objects.all().order_by("-published_date")
 

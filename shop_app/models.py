@@ -4,10 +4,14 @@ from home_app.models import SidebarNews
 
 
 class ShopSidebarNews(SidebarNews):
+    """Связь с общей моделью SidebarNews из home_app"""
+
     pass
 
 
 class Seller(models.Model):
+    """Модель продавцов"""
+
     name = models.CharField(max_length=100)
 
     def __str__(self) -> str:
@@ -15,6 +19,8 @@ class Seller(models.Model):
 
 
 class Contact(models.Model):
+    """Модель для контактной информации продавцов"""
+
     CONTACT_TYPE_CHOICES = [
         ("Телефон", "Телефон"),
         ("Email", "Email"),
@@ -31,6 +37,8 @@ class Contact(models.Model):
 
 
 class Product(models.Model):
+    """Модель для карточек товаров, соединенная с моделью продавцов"""
+
     title = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     discount = models.DecimalField(max_digits=3, decimal_places=0, default=0)
@@ -48,6 +56,8 @@ class Product(models.Model):
 
 
 class ProductImage(models.Model):
+    """Модель изображений для карточек товаров"""
+
     product = models.ForeignKey(
         Product, related_name="images", on_delete=models.CASCADE
     )

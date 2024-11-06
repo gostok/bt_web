@@ -22,6 +22,25 @@ CHAT_ID = "1393180508"  # ID Anton
 async def send_to_tg(
     tg_session_name, tg_session_date, tg_session_time, tg_session_contact
 ):
+    """
+    Асинхронно отправляет сообщение в Telegram о новой записи.
+
+    Формирует сообщение с информацией о записи, включая имя, дату,
+    время и контактные данные, и отправляет его в указанный чат
+    через Telegram Bot API. Если отправка сообщения завершается
+    ошибкой, выводит статус ошибки и текст ответа.
+
+    Параметры:
+    tg_session_name: str
+        Имя, связанное с записью.
+    tg_session_date: str
+        Дата записи.
+    tg_session_time: str
+        Время записи.
+    tg_session_contact: str
+        Контактная информация для связи.
+    """
+
     message = (
         f"Новая запись:\n\n"
         f"Имя: {tg_session_name}\n"
@@ -40,8 +59,21 @@ async def send_to_tg(
 
 
 class BookSessionView(View):
+    """Класс для обработки GET- и POST-запросов на странице - 'Запись на сеанс'"""
+
     @method_decorator(csrf_exempt)
     def get(self, request):
+        """
+        Обрабатывает GET-запрос к странице 'Запись на сеанс' и возвращает соответствующий шаблон.
+        Настройка связи с формой SessionForm, с свободными датами и временем для записи на сеанс.
+        Контекст:
+        - form: форма записи на сеанс (Дата, Время, Имя, Контакты);
+        - available_dates: связь с моделью свободных дат;
+        - selected_date: вывод свободных дат в дропменю формы Дата;
+        - selected_time: вывод свободного времени для выбранной даты в дропменю формы Время;
+        - sidebar_news: общая модель из home_app.
+        """
+
         print("GET запрос к BookSessionView")
 
         sidebar_news = SidebarNews.objects.all()
@@ -62,6 +94,14 @@ class BookSessionView(View):
         return render(request, "session.html", context)
 
     def post(self, request):
+        """
+        Обрабатывает POST-запрос к странице 'Запись на сеанс'.
+        Настройка валидации, сохранения формы, так же передача сохраненных данных телеграм боту с помощью
+        утилиты async_to_sync, которая позволяет вызывать асинхронную функцию send_to_tg из синхронного кода,
+        чтобы тот в свою очередь отправил эти данные в чат группу сотрудников.
+        Конструкция обработки исключений для ловки ошибок, связанных с Телеграмом.
+        """
+
         print("POST запрос к BookSessionView")
         form = SessionForm(request.POST)
         if form.is_valid():
@@ -74,7 +114,7 @@ class BookSessionView(View):
 
             try:
                 async_to_sync(send_to_tg)(
-                    tg_session.name,  # Передайте имя
+                    tg_session.name,
                     tg_session.date,
                     tg_session.time,
                     tg_session.contact_info,
@@ -98,6 +138,16 @@ class BookSessionView(View):
 
 @require_GET
 def get_times(request):
+    """
+    Обрабатывает GET-запрос для получения доступных временных интервалов
+    по указанной дате.
+
+    Проверяет, является ли запрос AJAX (XMLHttpRequest). Если это так,
+    функция извлекает параметр 'date' из GET-запроса и ищет соответствующую
+    дату в базе данных. Если дата не предоставлена или не найдена,
+    возвращает соответствующий JSON-ответ с ошибкой.
+    """
+
     if request.headers.get("x-requested-with") == "XMLHttpRequest":
         date = request.GET.get("date")
         if not date:
