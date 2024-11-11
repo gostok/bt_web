@@ -67,10 +67,10 @@
     <section class="content">
 
         <!-- Шапка главной страницы -->
-        <div class="bgimage mt-0">
-            {% if header_image %}
-                <img src="{{ header_image.image.url }}" alt="Шапка страницы главной">
-            {% endif %}
+        <div class="bgimage mt-0 col-lg-12 col-md-12">
+            <img src="{% static 'images/img_soc/1950.png' %}" alt="Шапка" class="desktop-header">
+            <img src="{% static 'images/img_soc/768.png' %}" alt="Шапка" class="tablet-header">
+            <img src="{% static 'images/img_soc/488.png' %}" alt="Шапка" class="mobile-header">
         </div>
 
 

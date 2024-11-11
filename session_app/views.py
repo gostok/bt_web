@@ -12,11 +12,13 @@ from .models import *
 from .forms import *
 from datetime import datetime
 
+import os
+from dotenv import load_dotenv
 
-BOT_TOKEN = "7247051447:AAEh7VTA9zJ88n6A8Y75I1CNjw8mW0nXZpY"  # Токен бота тест
-CHAT_ID = "1393180508"  # ID Anton
-# BOT_TOKEN = "5383497492:AAHxd-yAXqGURMm_ISNCJb08l0RXCHjfdPg" # Токен бота BjusTattoo
-# CHAT_ID = "-1002124714510" # ID чата сотрудников
+load_dotenv()
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
 
 
 async def send_to_tg(
